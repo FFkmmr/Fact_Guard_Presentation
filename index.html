@@ -144,7 +144,7 @@
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
     </div>
     
-    <div class="hint" id="hint">← → стрелки для навигации | Home/End — первый/последний слайд</div>
+    <div class="hint" id="hint">← → стрелки для навигации | ↑/↓ — первый/последний слайд</div>
     
     <script>
         const totalSlides = 7;
@@ -253,11 +253,11 @@
                     e.preventDefault();
                     prevSlide();
                     break;
-                case 'Home':
+                case 'ArrowUp':
                     e.preventDefault();
                     goToSlide(1);
                     break;
-                case 'End':
+                case 'ArrowDown':
                     e.preventDefault();
                     goToSlide(totalSlides);
                     break;
