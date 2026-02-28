@@ -35,7 +35,7 @@
         }
         
         .controls {
-            position: fixed;
+            position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -69,10 +69,10 @@
             backdrop-filter: blur(10px);
         }
         
-        .nav-btn:hover {
+        /* .nav-btn:hover {
             background: rgba(0, 0, 0, 0.8);
             transform: scale(1.1);
-        }
+        } */
         
         .nav-btn:active {
             transform: scale(0.95);
@@ -107,9 +107,9 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .dot:hover {
+        /* .dot:hover {
             background: rgba(255, 255, 255, 0.6);
-        }
+        } */
         
         .dot.active {
             background: #3b82f6;
@@ -140,14 +140,14 @@
     <div class="controls" id="controls">
         <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
         <div class="dots" id="dots"></div>
-        <span class="slide-counter" id="counter">1 / 7</span>
+        <span class="slide-counter" id="counter">1 / 8</span>
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
     </div>
     
     <div class="hint" id="hint">← → стрелки для навигации | ↑/↓ — первый/последний слайд</div>
     
     <script>
-        const totalSlides = 7;
+        const totalSlides = 8;
         const SLIDE_WIDTH = 1280;
         const SLIDE_HEIGHT = 720;
         const IDLE_TIMEOUT = 1500;
@@ -213,6 +213,13 @@
                 dot.classList.toggle('active', index + 1 === currentSlide);
             });
         }
+        
+        // Trigger auto-hover animation in slide after it loads
+        frame.addEventListener('load', () => {
+            try {
+                frame.contentWindow.postMessage('triggerAutoHover', '*');
+            } catch(e) {}
+        });
         
         function nextSlide() {
             if (currentSlide < totalSlides) {

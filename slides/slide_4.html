@@ -133,10 +133,11 @@
             gap: 10px;
             position: relative;
             backdrop-filter: blur(12px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .step-card:hover {
+        /* .step-card:hover, */
+        .step-card.auto-hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.25);
             border-color: rgba(59, 130, 246, 0.5);
@@ -222,7 +223,7 @@
             right: 140px; /* Center of last card */
             bottom: -30px;
             color: #3B82F6;
-            font-size: 1.5rem;
+            font-size: 0.5rem;
             opacity: 0.5;
             animation: bounce 2s infinite;
         }
@@ -405,9 +406,48 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
 </div>
+<script>
+    function runAutoHoverSequence() {
+        const row1 = document.querySelectorAll('.process-row:first-of-type .step-card');
+        const row2 = document.querySelectorAll('.process-row:last-of-type .step-card');
+        // Row 1: 1->2->3, Row 2 is reversed visually: 6<-5<-4, animate 4->5->6
+        const row2Arr = Array.from(row2).reverse();
+        const elements = [...row1, ...row2Arr];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+</script>
 </body>
 </html>

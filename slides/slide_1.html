@@ -89,6 +89,32 @@
             transition: all 0.3s ease;
         }
 
+        /* .platform-badge:hover, */
+        .platform-badge.auto-hover {
+            background-color: rgba(59, 130, 246, 0.6);
+            border-color: rgba(96, 165, 250, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .value-prop {
+            transition: all 0.5s ease;
+        }
+
+        .value-prop .w-12 {
+            transition: box-shadow 0.5s ease;
+        }
+
+        /* .value-prop:hover, */
+        .value-prop.auto-hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* .value-prop:hover .w-12, */
+        .value-prop.auto-hover .w-12 {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
         .decorative-line {
             width: 2px;
             height: 60px;
@@ -108,7 +134,7 @@
 <!-- Logo Section -->
 <div class="flex flex-col items-center mb-6">
 <div class="logo-circle">
-<i class="fas fa-users text-3xl text-white"></i>
+<img src="../icons/Logo_VX_Solo.png" alt="VerifyX Logo" style="height: 50px;">
 </div>
 <h2 class="text-2xl font-bold tracking-[0.2em] text-white font-montserrat ">VerifyX</h2>
 </div>
@@ -123,19 +149,19 @@
             </p>
 <!-- Value Props -->
 <div class="flex gap-12 mb-12">
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center value-prop">
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-bullseye text-xl"></i>
 </div>
 <span class="text-white font-semibold tracking-wider text-sm">Точно</span>
 </div>
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center value-prop">
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-search text-xl"></i>
 </div>
 <span class="text-white font-semibold tracking-wider text-sm">Прозрачно</span>
 </div>
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center value-prop">
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-bolt text-xl"></i>
 </div>
@@ -169,8 +195,46 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
+<script>
+    function runAutoHoverSequence() {
+        const elements = [
+            ...document.querySelectorAll('.value-prop'),
+            ...document.querySelectorAll('.platform-badge')
+        ];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+</script>
 </body>
 </html>

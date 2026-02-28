@@ -65,7 +65,14 @@
             display: flex;
             align-items: flex-start;
             gap: 20px;
-            transition: transform 0.2s;
+            transition: all 0.5s ease;
+        }
+
+        /* .card:hover, */
+        .card.auto-hover {
+            transform: translateX(8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.06);
         }
         
         .icon-box {
@@ -222,8 +229,45 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
+<script>
+    function runAutoHoverSequence() {
+        const leftCards = document.querySelectorAll('.flex-1:first-of-type .card');
+        const rightCards = document.querySelectorAll('.flex-1:last-of-type .card');
+        const elements = [...leftCards, ...rightCards];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+</script>
 </body>
 </html>

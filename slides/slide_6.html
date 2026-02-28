@@ -87,10 +87,11 @@
             flex-direction: column;
             position: relative;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
         
-        .tech-card:hover {
+        /* .tech-card:hover, */
+        .tech-card.auto-hover {
             border-color: rgba(59, 130, 246, 0.5);
             transform: translateY(-5px);
             background-color: rgba(15, 23, 42, 0.8);
@@ -130,17 +131,18 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 10px 16px;
-            transition: all 0.2s;
+            transition: all 0.5s;
             width: 100%; /* Full width in column layout usually, but here distinct items */
         }
 
-        .tech-badge:hover {
+        /* .tech-badge:hover, */
+        .tech-badge.auto-hover {
             background-color: rgba(59, 130, 246, 0.1);
             border-color: rgba(59, 130, 246, 0.3);
         }
 
         .badge-icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
             width: 40px;
             text-align: center;
         }
@@ -165,7 +167,7 @@
 
         .info-icon-circle {
             width: 48px;
-            height: 48px;
+            height: 40px;
             border-radius: 50%;
             background-color: rgba(59, 130, 246, 0.1);
             border: 1px solid rgba(59, 130, 246, 0.3);
@@ -324,7 +326,7 @@
 </div>
 <div>
 <h4 class="text-white font-bold font-montserrat">Масштабирование</h4>
-<p class="text-gray-400 text-sm font-inter">Горизонтальное масштабирование через Kubernetes</p>
+<p class="text-gray-400 text-sm font-inter">Высокий потенциал для горизонтального масштабирования</p>
 </div>
 </div>
 <div style="width: 1px; height: 40px;  margin-right: 24px; background-color: rgba(59, 130, 246, 0.3);"></div>
@@ -360,8 +362,46 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
+</div>
+<script>
+    function runAutoHoverSequence() {
+        const techCards = document.querySelectorAll('.tech-card');
+        
+        const elements = [...techCards];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+</script>
 </body>
 </html>

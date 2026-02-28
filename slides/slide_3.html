@@ -89,13 +89,14 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
         
-        .platform-card:hover {
+        /* .platform-card:hover, */
+        .platform-card.auto-hover {
             border-color: rgba(59, 130, 246, 0.6);
             transform: translateY(-5px);
             background-color: rgba(15, 23, 42, 0.8);
@@ -109,7 +110,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 16px;
             background-color: rgba(59, 130, 246, 0.1);
             color: #60A5FA;
@@ -181,7 +182,7 @@
     <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Веб-платформа</h3>
 </div>
 <p class="text-gray-400 text-sm leading-relaxed font-inter">
-                        Полнофункциональный портал для глубокого анализа статей, новостей и ссылок через интуитивный интерфейс.
+                        Полнофункциональный портал для глубокого анализа статей, новостей и ссылок через интуитивно-понятный интерфейс и саморазвития.
                     </p>
 </div>
 <!-- Extension Card -->
@@ -240,8 +241,46 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
+</div>
+<script>
+    function runAutoHoverSequence() {
+        const topCards = document.querySelectorAll('.cards-grid-top .platform-card');
+        const bottomCards = document.querySelectorAll('.cards-grid-bottom .platform-card');
+        const elements = [...topCards, ...bottomCards];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+</script>
 </body>
 </html>
