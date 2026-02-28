@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fact Guard - Platforms</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #091224;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Effects */
+        .glow-top-right {
+            position: absolute;
+            top: -150px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background-color: #1e3a8a; /* Blue-900 */
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .glow-bottom-left {
+            position: absolute;
+            bottom: -150px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: #3b82f6; /* Blue-500 */
+            filter: blur(140px);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        /* Grid Pattern Overlay */
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+        }
+
+        /* Header Styles */
+        .header-line {
+            width: 60px;
+            height: 4px;
+            background-color: #3B82F6;
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+
+        /* Card Styles */
+        .platform-card {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .platform-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-5px);
+            background-color: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60A5FA;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .card-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(59, 130, 246, 0.1);
+            filter: blur(40px);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+            transition: opacity 0.3s;
+        }
+
+        /* Layout Grid */
+        .cards-grid-top {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 24px;
+        }
+
+        .cards-grid-top .platform-card {
+            width: calc(33.333% - 16px);
+        }
+        
+        .cards-grid-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .cards-grid-bottom .platform-card {
+            width: calc(33.333% - 16px); 
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="glow-top-right"></div>
+<div class="glow-bottom-left"></div>
+<div class="grid-pattern"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="mb-5">
+<div class="header-line"></div>
+<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">Экосистема проекта</h2>
+<h1 class="text-4xl font-black text-white font-montserrat">Мультиплатформенность</h1>
+<p class="text-gray-400 mt-2 font-inter max-w-2xl text-lg">Fact Guard доступен везде, где вы потребляете информацию: от браузера до мессенджеров.</p>
+</div>
+<!-- Cards Container -->
+<div class="flex-1 flex flex-col justify-center">
+<!-- Row 1: 3 Cards -->
+<div class="cards-grid-top">
+<!-- Web Card -->
+<div class="platform-card">
+<div class="card-glow"></div>
+<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="card-icon">
+    <i class="fas fa-globe"></i>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Веб-платформа</h3>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed font-inter">
+                        Полнофункциональный портал для глубокого анализа статей, новостей и ссылок через интуитивный интерфейс.
+                    </p>
+</div>
+<!-- Extension Card -->
+<div class="platform-card">
+<div class="card-glow"></div>
+<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="card-icon">
+    <i class="fas fa-puzzle-piece"></i>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Браузерное расширение</h3>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed font-inter">
+                            Мгновенная проверка контента на странице в один клик. Индикаторы доверия прямо в поисковой выдаче.
+                        </p>
+</div>
+</div>
+<!-- Row 2: 2 Cards Centered -->
+<div class="cards-grid-bottom">
+<!-- Telegram Card -->
+<div class="platform-card">
+<div class="card-glow"></div>
+<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="card-icon" style="color: #2AABEE; background-color: rgba(42, 171, 238, 0.1); border-color: rgba(42, 171, 238, 0.2);">
+    <i class="fab fa-telegram-plane"></i>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Telegram Bot</h3>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed font-inter">
+                            Самый быстрый способ проверки. Отправьте ссылку или текст боту и получите краткую сводку с вердиктом ИИ.
+                        </p>
+</div>
+<!-- API Card -->
+<div class="platform-card">
+<div class="card-glow"></div>
+<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="card-icon" style="color: #10B981; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);">
+    <i class="fas fa-code"></i>
+    </div>
+    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">API для разработчиков</h3>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed font-inter">
+                            REST API для интеграции технологий Fact Guard в сторонние CMS, новостные агрегаторы и корпоративные системы.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
+<div class="text-blue-300/40 text-sm font-medium tracking-widest">FACT GUARD 2026</div>
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+</div>
+</div>
+</div>
+</body>
+</html>

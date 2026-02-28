@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fact Guard Presentation</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #091224; /* Deep dark blue base */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Background Glow Simulation using blurred divs instead of gradients */
+        .glow-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 500px;
+            background-color: #172a4f;
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .glow-top-left {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: #1e3a8a;
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .platform-badge {
+            background-color: rgba(30, 58, 138, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: #bfdbfe;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .decorative-line {
+            width: 2px;
+            height: 60px;
+            background-color: #3B82F6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Elements -->
+<div class="glow-center"></div>
+<div class="glow-top-left"></div>
+<!-- Decorative subtle grid -->
+<div style="position: absolute; inset: 0; background-image: radial-gradient(#3B82F6 1px, transparent 1px); background-size: 40px 40px; opacity: 0.05; z-index: 1;"></div>
+<div class="content-wrapper">
+<!-- Logo Section -->
+<div class="flex flex-col items-center mb-6">
+<div class="logo-circle">
+<i class="fas fa-users text-3xl text-white"></i>
+</div>
+<h2 class="text-2xl font-bold tracking-[0.2em] text-white font-montserrat ">Fact Guard</h2>
+</div>
+<!-- Main Title -->
+<h1 class="text-6xl font-black text-white mb-6 leading-tight font-montserrat max-w-5xl">
+                Комплексное Решение<br/>
+<span class="text-blue-500">ПРОТИВ ДЕЗИНФОРМАЦИИ</span>
+</h1>
+<!-- Subtitle/Description -->
+<p class="text-xl text-gray-300 mb-5 max-w-3xl font-light leading-relaxed">
+                Найдите правду среди шума. ИИ‑инструмент для выявления манипуляций,<br/>проверки источников и сравнения фактов.
+            </p>
+<!-- Value Props -->
+<div class="flex gap-12 mb-12">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
+<i class="fas fa-bullseye text-xl"></i>
+</div>
+<span class="text-white font-semibold tracking-wider text-sm">Точно</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
+<i class="fas fa-search text-xl"></i>
+</div>
+<span class="text-white font-semibold tracking-wider text-sm">Прозрачно</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
+<i class="fas fa-bolt text-xl"></i>
+</div>
+<span class="text-white font-semibold tracking-wider text-sm">Быстро</span>
+</div>
+</div>
+<!-- Platforms List -->
+<div class="flex flex-wrap justify-center gap-4 mb-16">
+<div class="platform-badge">
+<i class="fas fa-globe"></i> Web
+                </div>
+<div class="platform-badge">
+<i class="fas fa-puzzle-piece"></i> Extension
+                </div>
+<div class="platform-badge">
+<i class="fas fa-desktop"></i> Desktop
+                </div>
+<div class="platform-badge">
+<i class="fab fa-telegram-plane"></i> Telegram
+                </div>
+<div class="platform-badge">
+<i class="fas fa-code"></i> API
+                </div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
+<div class="text-blue-300/40 text-sm font-medium tracking-widest">FACT GUARD 2026</div>
+<div class="flex gap-2">
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+</div>
+</div>
+</div>
+</body>
+</html>
