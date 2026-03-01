@@ -1,229 +1,223 @@
 <!DOCTYPE html>
-
-<html lang="ru">
+<html lang="ro">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VerifyX - Problem &amp; Solution</title>
+<title>VerifyX - Echipa</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        body { margin: 0; padding: 0; overflow: hidden; background-color: #000; }
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            background-color: #091224;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-        /* Glow effects using blurred divs */
-        .glow-red {
-            position: absolute;
-            top: 20%;
-            left: -100px;
-            width: 600px;
-            height: 600px;
-            background-color: #7f1d1d; /* Red-900 */
-            filter: blur(150px);
-            border-radius: 50%;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        .glow-blue {
-            position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 700px;
-            height: 700px;
-            background-color: #1e3a8a; /* Blue-900 */
-            filter: blur(150px);
-            border-radius: 50%;
-            opacity: 0.25;
-            z-index: 0;
-        }
-        
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            padding: 20px 60px 60px 60px;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+.slide-container {
+    width: 1280px;
+    height: 720px;
+    background-color: #091224;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            transition: all 0.5s ease;
-        }
+/* Background */
+.glow-top-right {
+    position: absolute;
+    top: -150px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background-color: #1e3a8a;
+    filter: blur(120px);
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: 0;
+}
+.glow-bottom-left {
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background-color: #3b82f6;
+    filter: blur(140px);
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: 0;
+}
+.grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    z-index: 1;
+}
 
-        /* .card:hover, */
-        .card.auto-hover {
-            transform: translateX(8px);
-            border-color: rgba(255, 255, 255, 0.15);
-            background-color: rgba(255, 255, 255, 0.06);
-        }
-        
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.25rem;
-        }
+.content-wrapper {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 60px;
+}
 
-        .problem-icon {
-            background-color: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
+.header-line {
+    width: 60px;
+    height: 4px;
+    background-color: #3B82F6;
+    margin-bottom: 16px;
+    border-radius: 2px;
+}
 
-        .solution-icon {
-            background-color: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
+/* Cards */
+.platform-card {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    height: 300px;
+    width: 200px;
+}
+.platform-card.auto-hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-5px);
+    background-color: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+}
 
-        .divider {
-            width: 1px;
-            background-color: rgba(255, 255, 255, 0.1);
-            margin: 40px 40px 0 40px;
-            position: relative;
-        }
-        
-        .divider-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        
-        .header-section {
-            padding: 40px 60px 10px 60px;
-            z-index: 20;
-        }
-    </style>
+.card-icon {
+    width: 150px;
+    height: 160px;
+    border-radius: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    overflow: hidden;
+}
+.card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(59, 130, 246, 0.1);
+    filter: blur(40px);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+}
+
+/* Layout */
+.cards-grid {
+    position: relative;
+    top: -50px;
+    display: flex;
+    /* grid-template-columns: repeat(3, 1fr); */
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+</style>
 </head>
+
 <body>
 <div class="slide-container">
-<!-- Backgrounds -->
-<div class="glow-red"></div>
-<div class="glow-blue"></div>
-<!-- Header -->
-<div class="header-section">
-<div class="flex items-center gap-4 mb-2">
-<div class="h-1 w-12 bg-blue-500 rounded-full"></div>
-<h2 class="text-blue-500 font-bold tracking-widest uppercase text-xs font-montserrat">Контекст проекта</h2>
-</div>
-<h1 class="text-4xl font-black text-white font-montserrat">Проблема и Решение</h1>
-</div>
-<!-- Main Content -->
+
+<div class="glow-top-right"></div>
+<div class="glow-bottom-left"></div>
+<div class="grid-pattern"></div>
+
 <div class="content-wrapper">
-<!-- Left Column: Problem -->
-<div class="flex-1 flex flex-col justify-center">
-<div class="mb-6 pl-4 border-l-4 border-red-500/80">
-<h3 class="text-2xl font-bold text-white mb-1 font-montserrat">Информационный Хаос</h3>
-<p class="text-gray-400 text-sm">Вызовы, с которыми сталкиваются пользователи</p>
+
+<!-- Header -->
+<div class="">
+<div class="header-line"></div>
+<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">
+Echipa Proiectului
+</h2>
+<h1 class="text-4xl font-black text-white font-montserrat">
+Oameni care construiesc VerifyX
+</h1>
+<p class="text-gray-400 mt-2 font-inter max-w-2xl text-md">
+Experți în strategie, tehnologie și jurnalism care dezvoltă un ecosistem modern de verificare a informației.
+</p>
 </div>
-<div class="card">
-<div class="icon-box problem-icon">
-<i class="fas fa-chart-line"></i>
+
+<!-- Cards -->
+<div class="flex-1 flex items-center">
+<div class="cards-grid w-full">
+
+<div class="platform-card">
+<div class="card-glow"></div>
+<div class="card-icon"><img src="../icons/users/daniel.jpg" alt="Gulcinschi Daniel"></div>
+<h3 class="text-xl font-bold text-white font-montserrat">Gulcinschi Daniel</h3>
+<p class="text-blue-400 text-sm mt-1 font-medium">Product Strategist & Designer</p>
 </div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">Рост объема фейков</h4>
-<p class="text-gray-400 text-sm leading-relaxed">Манипулятивные новости и дипфейки распространяются в 6 раз быстрее правды.</p>
+
+<div class="platform-card">
+<div class="card-glow"></div>
+<div class="card-icon"><img src="../icons/users/denis.jpg" alt="Buga Denis"></div>
+<h3 class="text-xl font-bold text-white font-montserrat">Buga Denis</h3>
+<p class="text-blue-400 text-sm mt-1 font-medium">Communication Specialist</p>
 </div>
+
+<div class="platform-card">
+<div class="card-glow"></div>
+<div class="card-icon"><img src="../icons/users/arina.jpg" alt="Bontaruc Arina"></div>
+<h3 class="text-xl font-bold text-white font-montserrat">Bontaruc Arina</h3>
+<p class="text-blue-400 text-sm mt-1 font-medium">Expert în Jurnalism & Etică</p>
 </div>
-<div class="card">
-<div class="icon-box problem-icon">
-<i class="fas fa-hourglass-half"></i>
+
+<div class="platform-card">
+<div class="card-glow"></div>
+<div class="card-icon"><img src="../icons/users/Iulik.jpg" alt="Terentii Iulian"></div>
+<h3 class="text-xl font-bold text-white font-montserrat">Terentii Iulian</h3>
+<p class="text-blue-400 text-sm mt-1 font-medium">Full-Stack Developer</p>
 </div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">Нехватка времени</h4>
-<p class="text-gray-400 text-sm leading-relaxed">У пользователей нет ресурсов проверять первоисточники и сравнивать факты вручную.</p>
+
+<div class="platform-card">
+<div class="card-glow"></div>
+<div class="card-icon"><img src="../icons/users/eugen.jpg" alt="Șerșun Eugen"></div>
+<h3 class="text-xl font-bold text-white font-montserrat">Șerșun Eugen</h3>
+<p class="text-blue-400 text-sm mt-1 font-medium">AI & Backend Developer</p>
 </div>
-</div>
-<div class="card">
-<div class="icon-box problem-icon">
-<i class="fas fa-magnifying-glass-chart"></i>
-</div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">Сложность верификации</h4>
-<p class="text-gray-400 text-sm leading-relaxed">Трудно выявить искажения фактов и определить первоисточник без спец. инструментов.</p>
-</div>
-</div>
-</div>
-<!-- Divider -->
-<div class="divider">
-<div class="divider-icon">
-<i class="fas fa-arrow-right"></i>
-</div>
-</div>
-<!-- Right Column: Solution -->
-<div class="flex-1 flex flex-col justify-center">
-<div class="mb-6 pl-4 border-l-4 border-blue-500">
-<h3 class="text-2xl font-bold text-white mb-1 font-montserrat">Экосистема VerifyX</h3>
-<p class="text-gray-400 text-sm">Комплексный подход к восстановлению доверия</p>
-</div>
-<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
-<div class="icon-box solution-icon">
-<i class="fas fa-robot"></i>
-</div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">AI-Анализ манипуляций</h4>
-<p class="text-blue-100/80 text-sm leading-relaxed">Автоматическое выявление пропаганды и эмоциональной окраски текста (LLM + правила).</p>
-</div>
-</div>
-<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
-<div class="icon-box solution-icon">
-<i class="fas fa-globe"></i>
-</div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">Кросс-проверка источников</h4>
-<p class="text-blue-100/80 text-sm leading-relaxed">Поиск похожих материалов в разных СМИ для сравнения фактов и контекста.</p>
-</div>
-</div>
-<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
-<div class="icon-box solution-icon">
-<i class="fas fa-file-contract"></i>
-</div>
-<div>
-<h4 class="text-white font-bold mb-1 font-montserrat">Прозрачные отчеты</h4>
-<p class="text-blue-100/80 text-sm leading-relaxed">Оценка надежности с метриками, ссылками на оригиналы и рекомендациями.</p>
+
 </div>
 </div>
 </div>
-</div>
-<!-- Footer -->
-<div class="absolute bottom-6 w-full px-16 flex justify-between items-center z-20">
+
+<!-- Footer (identic ca stil) -->
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
 <div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
 <div class="flex gap-2">
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
-<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
+<div class="w-8 h-2 rounded-full bg-blue-500"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
@@ -232,42 +226,34 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
+
 </div>
+
 <script>
-    function runAutoHoverSequence() {
-        const leftCards = document.querySelectorAll('.flex-1:first-of-type .card');
-        const rightCards = document.querySelectorAll('.flex-1:last-of-type .card');
-        const elements = [...leftCards, ...rightCards];
-        
-        let index = 0;
-        const duration = 1000;
-        const overlap = 500;
-        
-        function animateNext() {
-            if (index >= elements.length) return;
-            
-            const el = elements[index];
-            el.classList.add('auto-hover');
-            
-            setTimeout(() => {
-                el.classList.remove('auto-hover');
-            }, duration);
-            
-            index++;
-            if (index < elements.length) {
-                setTimeout(animateNext, duration - overlap);
-            }
+function runAutoHoverSequence() {
+    const elements = document.querySelectorAll('.platform-card');
+    let index = 0;
+    const duration = 1000;
+    const overlap = 500;
+
+    function animateNext() {
+        if (index >= elements.length) return;
+        const el = elements[index];
+        el.classList.add('auto-hover');
+        setTimeout(() => {
+            el.classList.remove('auto-hover');
+        }, duration);
+        index++;
+        if (index < elements.length) {
+            setTimeout(animateNext, duration - overlap);
         }
-        
-        setTimeout(animateNext, 300);
     }
-    
-    window.addEventListener('message', (e) => {
-        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
-    });
-    
-    runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 7000);
+    setTimeout(animateNext, 300);
+}
+
+runAutoHoverSequence();
+setInterval(runAutoHoverSequence, 12000);
 </script>
+
 </body>
 </html>

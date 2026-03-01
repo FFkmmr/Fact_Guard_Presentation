@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VerifyX - QR</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #091224;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+        }
+        .glow-blue-center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 500px;
+            background-color: #1e3a8a;
+            opacity: 0.25;
+        }
+        .glow-cyan-bottom {
+            bottom: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background-color: #0e7490;
+            opacity: 0.15;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .qr-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 24px;
+            padding: 10px;
+            margin-top: 40px;
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.15);
+            transition: all 0.5s ease;
+        }
+
+        .qr-container.auto-hover {
+            transform: scale(1.03);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 0 80px rgba(59, 130, 246, 0.3);
+        }
+
+        .qr-image {
+            /* width: 350px; */
+            height: 350px;
+            object-fit: contain;
+            border-radius: 22px;
+        }
+
+        .site-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 10px 22px;
+            transition: all 0.5s ease;
+        }
+
+        .site-link.auto-hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .site-link i {
+            color: #60A5FA;
+            font-size: 2rem;
+        }
+
+        .site-link span {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Background Glows -->
+<div class="glow-blob glow-blue-center"></div>
+<div class="glow-blob glow-cyan-bottom"></div>
+
+<!-- Decorative Grid -->
+<div style="position: absolute; inset: 0; background-image: radial-gradient(#3B82F6 1px, transparent 1px); background-size: 40px 40px; opacity: 0.05; z-index: 1;"></div>
+
+<div class="content-wrapper">
+<!-- Website Link -->
+<a href="https://apich.sinkdev.dev/" target="_blank" class="site-link">
+<i class="fas fa-globe"></i>
+<span>apich.sinkdev.dev</span>
+</a>
+<!-- QR Code -->
+<div class="qr-container">
+<img src="../icons/Tg-QR.jpg" alt="Telegram QR Code" class="qr-image"/>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
+<div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function runAutoHoverSequence() {
+        const siteLink = document.querySelector('.site-link');
+        const qrContainer = document.querySelector('.qr-container');
+        
+        const elements = [siteLink, qrContainer].filter(Boolean);
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
+        }
+        
+        setTimeout(animateNext, 300);
+    }
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+    });
+    
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 12000);
+</script>
+</body>
+</html>
+
+
+
+
+
