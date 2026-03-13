@@ -134,18 +134,18 @@
 <!-- Logo Section -->
 <div class="flex flex-col items-center mb-6">
 <div class="logo-circle">
-<img src="../icons/Logo_VX_Solo.png" alt="Sigla VerifyX" style="height: 50px;">
+<img src="../icons/Logo_VX_Solo.png" alt="VerifyX Logo" style="height: 50px;">
 </div>
 <h2 class="text-2xl font-bold tracking-[0.2em] text-white font-montserrat ">VerifyX</h2>
 </div>
 <!-- Main Title -->
-<h1 class="text-6xl font-black text-white mb-6 leading-tight font-montserrat max-w-5xl">
-                Soluție Complexă<br/>
-<span class="text-blue-500">ÎMPOTRIVA DEZINFORMĂRII</span>
+<h1 class="text-6xl font-black text-white mb-6 leading-tight font-montserrat max-w-5xl" data-i18n="title">
+                Комплексное Решение<br/>
+<span class="text-blue-500">ПРОТИВ ДЕЗИНФОРМАЦИИ</span>
 </h1>
 <!-- Subtitle/Description -->
-<p class="text-xl text-gray-300 mb-5 max-w-3xl font-light leading-relaxed">
-                Găsiți adevărul în mijlocul zgomotului. Instrument AI pentru identificarea manipulărilor,<br/>verificarea surselor și compararea faptelor.
+<p class="text-xl text-gray-300 mb-5 max-w-3xl font-light leading-relaxed" data-i18n="subtitle">
+                Найдите правду среди шума. ИИ‑инструмент для выявления манипуляций,<br/>проверки источников и сравнения фактов.
             </p>
 <!-- Value Props -->
 <div class="flex gap-12 mb-12">
@@ -153,19 +153,19 @@
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-bullseye text-xl"></i>
 </div>
-<span class="text-white font-semibold tracking-wider text-sm">Precis</span>
+<span class="text-white font-semibold tracking-wider text-sm" data-i18n="prop1">Точно</span>
 </div>
 <div class="flex flex-col items-center value-prop">
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-search text-xl"></i>
 </div>
-<span class="text-white font-semibold tracking-wider text-sm">Transparent</span>
+<span class="text-white font-semibold tracking-wider text-sm" data-i18n="prop2">Прозрачно</span>
 </div>
 <div class="flex flex-col items-center value-prop">
 <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mb-2 text-blue-400">
 <i class="fas fa-bolt text-xl"></i>
 </div>
-<span class="text-white font-semibold tracking-wider text-sm">Rapid</span>
+<span class="text-white font-semibold tracking-wider text-sm" data-i18n="prop3">Быстро</span>
 </div>
 </div>
 <!-- Platforms List -->
@@ -174,7 +174,7 @@
 <i class="fas fa-globe"></i> Web
                 </div>
 <div class="platform-badge">
-<i class="fas fa-puzzle-piece"></i> Extensie
+<i class="fas fa-puzzle-piece"></i> Extension
                 </div>
 <div class="platform-badge">
 <i class="fab fa-telegram-plane"></i> Telegram
@@ -188,8 +188,7 @@
 <div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
 <div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
 <div class="flex gap-2">
-<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Indicator pagină curentă -->
-<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
@@ -232,10 +231,39 @@
     
     window.addEventListener('message', (e) => {
         if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+        if (e.data && e.data.type === 'setLang') applyLang(e.data.lang);
     });
-    
+
     runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 12000);
+    setInterval(runAutoHoverSequence, 7000);
+</script>
+
+<script>
+    const _i18n = {
+        en: {
+            title: 'Comprehensive Solution<br/><span class="text-blue-500">AGAINST DISINFORMATION</span>',
+            subtitle: 'Find the truth among the noise. An AI tool for detecting manipulations,<br/>verifying sources and cross-checking facts.',
+            prop1: 'Accurate',
+            prop2: 'Transparent',
+            prop3: 'Fast'
+        },
+        ru: {
+            title: 'Комплексное Решение<br/><span class="text-blue-500">ПРОТИВ ДЕЗИНФОРМАЦИИ</span>',
+            subtitle: 'Найдите правду среди шума. ИИ‑инструмент для выявления манипуляций,<br/>проверки источников и сравнения фактов.',
+            prop1: 'Точно',
+            prop2: 'Прозрачно',
+            prop3: 'Быстро'
+        }
+    };
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (_i18n[lang] && _i18n[lang][key] !== undefined) el.innerHTML = _i18n[lang][key];
+        });
+    }
+    applyLang('en');
+</script>
 </script>
 </body>
 </html>

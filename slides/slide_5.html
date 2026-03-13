@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VerifyX - AI Architecture</title>
+<title>VerifyX - Methodology</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -27,29 +27,27 @@
         }
 
         /* Background Glows */
-        .glow-top {
+        .glow-circle {
             position: absolute;
-            top: -200px;
-            left: 20%;
-            width: 800px;
-            height: 400px;
-            background-color: #1e3a8a;
-            filter: blur(120px);
             border-radius: 50%;
-            opacity: 0.3;
+            filter: blur(120px);
             z-index: 0;
         }
-        .glow-bottom-right {
-            position: absolute;
-            bottom: -150px;
-            right: -100px;
+        .glow-blue-left {
+            top: 20%;
+            left: -150px;
             width: 600px;
             height: 600px;
-            background-color: #3b82f6;
-            filter: blur(150px);
-            border-radius: 50%;
+            background-color: #1e3a8a;
+            opacity: 0.2;
+        }
+        .glow-cyan-right {
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: #0891b2; /* Cyan-600 */
             opacity: 0.15;
-            z-index: 0;
         }
 
         .content-wrapper {
@@ -57,180 +55,191 @@
             z-index: 10;
             flex: 1;
             display: flex;
-            flex-direction: column;
-            padding: 40px 60px;
+            padding: 0 60px;
         }
 
-        /* Header */
-        /* .header-section {
-            
-        } */
+        /* Left Visual Section */
+        .visual-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .book-card {
+            width: 320px;
+            height: 341px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 20px;
+            padding: 2px;
+            background: #3B82F6;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .feature-icon-box {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            font-size: 1.2rem;
+            transition: all 0.5s ease;
+        }
+
+        .icon-osint {
+            width: 60px;
+            height: 60px;
+            top: 40px;
+            left: -30px;
+            color: #ef4444;
+            font-size: 2rem;
+            transform: rotate(-10deg);
+        }
+
+        .icon-check {
+            width: 50px;
+            height: 50px;  
+            bottom: 84px;
+            right: -712px;
+            color: #10b981;
+            font-size: 1.2rem;
+            transform: rotate(15deg);
+        }
+        
+        .icon-shield {
+            width: 70px;
+            height: 70px;  
+            top: 53px;
+            left: 1074px;
+            color: #3b82f6;
+            font-size: 1.8rem;
+            transform: rotate(-5deg);
+        }
+
+        /* Right Content Section */
         .header-line {
             width: 60px;
             height: 4px;
             background-color: #3B82F6;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border-radius: 2px;
         }
 
-        /* Process Flow Layout - Snake Syle */
-        .process-container {
-            flex: 1;
+        .feature-list {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 40px;
-            position: relative;
-            padding: 0 20px;
-            align-items: center;
+            gap: 24px;
+            margin-top: 30px;
         }
 
-        .process-row {
-            width: 89%;
+        .feature-item {
             display: flex;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.5s ease;
         }
 
-        .process-row.reverse {
-            flex-direction: row-reverse;
+        /* .feature-item:hover, */
+        .feature-item.auto-hover {
+            transform: translateX(10px);
         }
 
-        /* Connecting Lines */
-        .connector-line-horizontal {
-            position: absolute;
-            top: 50%;
-            left: 100px;
-            right: 100px;
-            height: 2px;
-            background-color: #1e293b; /* Dark slate */
-            z-index: 1;
-        }
-        
-        .connector-vertical-right {
-            position: absolute;
-            top: 25%;
-            right: 100px; /* Aligns with the center of the last card in row 1 */
-            width: 4px;
-            height: 50%; /* Spans between rows */
-            border-right: 2px dashed #3B82F6;
-            border-bottom: 2px dashed #3B82F6;
-            border-bottom-right-radius: 20px;
-            z-index: 0;
-            opacity: 0.5;
-        }
-
-        /* Process Card */
-        .step-card {
-            width: 280px;
-            background-color: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            backdrop-filter: blur(12px);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-
-        /* .step-card:hover, */
-        .step-card.auto-hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.25);
+        /* .feature-item:hover .feature-icon-box, */
+        .feature-item.auto-hover .feature-icon-box {
+            background-color: rgba(59, 130, 246, 0.2);
             border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        .step-number {
+        .floating-icon {
             position: absolute;
-            top: -12px;
-            right: 20px;
             background-color: #0f172a;
-            color: #3B82F6;
-            border: 1px solid #3B82F6;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-            font-family: 'Montserrat', sans-serif;
-            z-index: 5;
-        }
-
-        .step-icon-box {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        /* Tech Stack Bar */
-        .tech-stack-bar {
-            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.4);
             border-radius: 12px;
-            padding: 16px 30px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            /* margin-top: 20px; */
-            margin-bottom: 30px;
-        }
-        
-        .tech-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 6px 16px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-        }
-        .tech-badge i {
-            color: #cbd5e1;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 20;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+            border-color: rgba(59, 130, 246, 0.8);
         }
 
-        /* Arrow Flow Indicators */
-        .arrow-right {
-            position: absolute;
-            top: 50%;
-            right: -25px;
-            transform: translateY(-50%);
-            color: #3B82F6;
-            opacity: 0.5;
+        /* .floating-icon:hover, */
+        .floating-icon.auto-hover {
+            transform: scale(1.15);
         }
-        .arrow-left {
-            position: absolute;
-            top: 50%;
-            left: -25px;
-            transform: translateY(-50%);
-            color: #3B82F6;
-            opacity: 0.5;
+
+        .book-card {
+            width: 320px;
+            height: 341px;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+            transition: all 0.5s ease;
         }
-        .arrow-down-curved {
-            position: absolute;
-            right: 140px; /* Center of last card */
-            bottom: -30px;
-            color: #3B82F6;
-            font-size: 0.5rem;
-            opacity: 0.5;
-            animation: bounce 2s infinite;
+
+        /* .book-card:hover, */
+        .book-card.auto-hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(2deg) scale(1.03);
+            box-shadow: 0 25px 60px -10px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .role-highlight {
+            overflow: hidden;
+            margin-top: 40px;
+            padding: 24px;
+            background-color: rgba(30, 58, 138, 0.2);
+            border-left: 4px solid #3B82F6;
+            border-radius: 0 12px 12px 0;
+            position: relative;
         }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(5px); }
+        .role-highlight i {
+            top: 9px !important;
+            right: -57px !important;
+            font-size: 11rem !important;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            opacity: 0.05;
+            color: #fff;
         }
 
     </style>
@@ -238,173 +247,102 @@
 <body>
 <div class="slide-container">
 <!-- Background Elements -->
-<div class="glow-top"></div>
-<div class="glow-bottom-right"></div>
-<!-- Grid Overlay -->
-<div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: 1; pointer-events: none;"></div>
+<div class="glow-circle glow-blue-left"></div>
+<div class="glow-circle glow-cyan-right"></div>
+<!-- Subtle Pattern -->
+<div style="position: absolute; inset: 0; opacity: 0.05; background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px; z-index: 1;"></div>
 <div class="content-wrapper">
-<!-- Header -->
-<div class="header-section">
+<!-- Left Column: Visual -->
+<div class="w-5/12 visual-container">
+<div class="book-card">
+<div class="w-24 h-24 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+<i class="fas fa-book-open text-5xl text-blue-400"></i>
+</div>
+<div class="text-center px-6">
+<h3 class="text-white font-bold text-xl font-montserrat mb-2" data-i18n="book_title">База Знаний</h3>
+<p class="text-blue-200/60 text-sm font-inter" data-i18n="book_subtitle">Основы медиаграмотности и цифровой гигиены</p>
+</div>
+<!-- Decorative Lines simulating text -->
+<div class="w-2/3 h-1 bg-gray-700/50 rounded mt-8 mb-2"></div>
+<div class="w-3/4 h-1 bg-gray-700/50 rounded mb-2"></div>
+<div class="w-1/2 h-1 bg-gray-700/50 rounded"></div>
+</div>
+<!-- Floating Elements -->
+<div class="floating-icon icon-osint">
+<i class="fas fa-search-location"></i>
+</div>
+<div class="floating-icon icon-check">
+<i class="fas fa-check-double"></i>
+</div>
+<div class="floating-icon icon-shield">
+<i class="fas fa-shield-alt"></i>
+</div>
+
+<!-- Role Highlight Box -->
+<div class="role-highlight">
+<i class="fas fa-robot"></i>
+<h4 class="text-blue-300 font-bold font-montserrat text-sm uppercase mb-2" data-i18n="role_title">Роль VerifyX</h4>
+<p class="text-white font-inter text-sm leading-relaxed" data-i18n="role_text">
+                        Наш ИИ автоматизирует рутинный сбор фактов и доказательств из сотен источников, но 
+                        <span class="text-blue-400 font-bold">окончательное решение всегда остается за человеком</span>, вооруженным знаниями.
+                    </p>
+</div>
+</div>
+<!-- Right Column: Content -->
+<div class="w-7/12 flex flex-col justify-center pl-10 pt-10">
 <div class="header-line"></div>
-<div class="flex justify-between items-end">
+<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2" data-i18n="section_label">Образование</h2>
+<h1 class="text-4xl font-black text-white font-montserrat mb-2" data-i18n="page_title">Методология VerifyX</h1>
+<p class="text-gray-400 font-inter text-lg max-w-xl" data-i18n="subtitle">Мы не просто даем инструмент, но и помогаем развивать критическое мышление.</p>
+<div class="feature-list">
+<!-- Item 1 -->
+<div class="feature-item">
+<div class="feature-icon-box">
+<i class="fas fa-graduation-cap"></i>
+</div>
 <div>
-<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">Proces tehnic</h2>
-<h1 class="text-4xl font-black text-white font-montserrat">Arhitectura Agentului AI</h1>
-</div>
-<div class="text-right max-w-md">
-<p class="text-gray-400 text-sm font-inter">Pipeline-ul de procesare a datelor de la primirea linkului până la verdictul final privind credibilitatea.</p>
-</div>
+<h3 class="text-white font-bold text-lg font-montserrat mb-1" data-i18n="feat1_title">Библиотека знаний</h3>
+<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg" data-i18n="feat1_desc">
+                                Собрание лучших материалов, книг и статей по OSINT (разведка по открытым источникам), фактчекингу и психологии манипуляций.
+                            </p>
 </div>
 </div>
-<!-- Process Flow -->
-<div class="process-container">
-<!-- Row 1: Steps 1-3 -->
-<div class="process-row">
-<!-- Step 1 -->
-<div class="step-card">
-<div class="step-number">1</div>
-<div class="step-icon-box bg-slate-700/30 text-slate-300 border border-slate-600/30">
-<i class="fas fa-keyboard"></i>
+<!-- Item 2 -->
+<div class="feature-item">
+<div class="feature-icon-box">
+<i class="fas fa-list-check"></i>
 </div>
-<h3 class="text-white font-bold font-montserrat">Introducerea datelor</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        Utilizatorul trimite text sau URL. Sistemul extrage conținutul principal.
-                    </p>
-<i class="fas fa-chevron-right arrow-right"></i>
+<div>
+<h3 class="text-white font-bold text-lg font-montserrat mb-1" data-i18n="feat2_title">Практические гайды</h3>
+<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg" data-i18n="feat2_desc">
+                                Пошаговые инструкции: как распознать верифицированный аккаунт, как проверить фото на подлинность и избежать мошенничества.
+                            </p>
 </div>
-<!-- Step 2 -->
-<div class="step-card">
-<div class="step-number">2</div>
-<div class="step-icon-box bg-slate-700/30 text-slate-300 border border-slate-600/30">
-<i class="fas fa-filter"></i>
 </div>
-<h3 class="text-white font-bold font-montserrat">Preprocesare</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        Curățarea HTML, detectarea limbii, normalizarea textului pentru analiză.
-                    </p>
-<i class="fas fa-chevron-right arrow-right"></i>
+<!-- Item 3 -->
+<div class="feature-item">
+<div class="feature-icon-box">
+<i class="fas fa-lightbulb"></i>
 </div>
-<!-- Step 3 -->
-<div class="step-card">
-<div class="step-number">3</div>
-<div class="step-icon-box bg-purple-900/30 text-purple-400 border border-purple-500/30">
-<i class="fas fa-brain"></i>
-</div>
-<h3 class="text-white font-bold font-montserrat">Analiza manipulărilor</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        LLM verifică textul pentru clickbait, încărcătură emoțională și propagandă.
-                    </p>
-<div style="bottom: -2.5rem;" class="absolute left-1/2 transform -translate-x-1/2 text-blue-500 text-xl animate-bounce">
-<i class="fas fa-arrow-down"></i>
+<div>
+<h3 class="text-white font-bold text-lg font-montserrat mb-1" data-i18n="feat3_title">Советы экспертов</h3>
+<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg" data-i18n="feat3_desc">
+                                Рекомендации по анализу источников и выявлению скрытой пропаганды в новостных заголовках.
+                            </p>
 </div>
 </div>
 </div>
-<!-- Row 2: Steps 4-6 (Reversed visual flow concept, but displayed logically left to right for readability, connected via snake path) -->
-<!-- Actually, let's keep it Left-to-Right for reading, but visually indicate the flow wrapping -->
-<div class="process-row">
-<!-- Step 6 (Final) - Placing it last visually -->
-<!-- Let's arrange logically: 4 -> 5 -> 6 -->
-<!-- Step 6 -->
-<div class="step-card" style="border-color: rgba(16, 185, 129, 0.4);">
-<div class="step-number bg-emerald-900 border-emerald-500 text-emerald-400">6</div>
-<div class="step-icon-box bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
-<i class="fas fa-clipboard-check"></i>
-</div>
-<h3 class="text-white font-bold font-montserrat">Sinteză finală</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        Generarea raportului cu metrici de credibilitate, linkuri și verdict.
-                    </p>
-</div>
-<!-- Step 5 -->
-<div class="step-card">
-<div class="step-number">5</div>
-<div class="step-icon-box bg-orange-900/30 text-orange-400 border border-orange-500/30">
-<i class="fas fa-balance-scale-right"></i>
-</div>
-<h3 class="text-white font-bold font-montserrat">Compararea faptelor</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        Verificare încrucișată a afirmațiilor. Identificarea distorsionărilor și contradicțiilor.
-                    </p>
-<i class="fas fa-chevron-left arrow-left"></i>
-</div>
-<!-- Step 4 -->
-<div class="step-card">
-<div class="step-number">4</div>
-<div class="step-icon-box bg-cyan-900/30 text-cyan-400 border border-cyan-500/30">
-<i class="fas fa-globe"></i>
-</div>
-<h3 class="text-white font-bold font-montserrat">Căutare semantică</h3>
-<p class="text-xs text-gray-400 font-inter leading-relaxed">
-                        Căutarea surselor relevante și a articolelor similare în baze verificate.
-                    </p>
-<i class="fas fa-chevron-left arrow-left"></i>
-</div>
-</div>
-<!-- Visual Connector for Snake Flow (Hidden on mobile, absolute here) -->
-<!-- Connecting Card 3 to Card 4 -->
-<svg class="absolute top-0 left-0 w-full h-full pointer-events-none" style="z-index: 1;">
-<!-- Path from Card 3 bottom to Card 4 top (assuming alignment) -->
-<!-- We need a line from Row 1 Item 3 (Right side) to Row 2 Item 1 (Left side) ? No, that's Z-pattern.
-                     The design above is 1-2-3 (top), 4-5-6 (bottom). 
-                     To make it flow, we need a line from 3 down to 6? No, 3 to 4.
-                     Let's draw a line from bottom of 3 to top of 4.
-                     Since they are vertically aligned (1 over 4, 2 over 5, 3 over 6) -> 
-                     Actually, standard reading is Z-pattern. 
-                     1 -> 2 -> 3
-                     (diagonal)
-                     4 -> 5 -> 6
-                -->
-<defs>
-<lineargradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
-<stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2"></stop>
-<stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.8"></stop>
-</lineargradient>
-</defs>
-<!-- Diagonal line from Right of Row1 to Left of Row2 -->
-<path d="M 1000 180 C 1100 180, 1100 250, 640 250 C 180 250, 180 320, 280 320" fill="none" opacity="0.4" stroke="url(#grad1)" stroke-dasharray="5,5" stroke-width="2" style="display: none;"></path>
-<!-- SVG is hard to align perfectly without JS coordinates, relying on CSS layout and arrows inside cards instead. -->
-</svg>
-<!-- Connection Line specific correction: 
-                 Row 1: 1 -> 2 -> 3
-                 Row 2: 4 -> 5 -> 6
-                 Logic: 3 is Analysis. 4 is Search. 
-                 Let's assume the flow is Z-shaped. 
-                 Added a bounce arrow under card 3 to suggest moving to next line.
-            -->
-</div>
-<!-- Infrastructure Bar -->
-<div class="tech-stack-bar">
-<div class="text-white font-bold font-montserrat text-sm tracking-wider uppercase flex items-center gap-2">
-<i class="fas fa-server text-blue-500"></i> Infrastructură
-            </div>
-<div class="flex gap-4">
-<div class="tech-badge">
-<i class="fas fa-layer-group text-blue-400"></i> Docker
-                </div>
-<div class="tech-badge">
-<i class="fas fa-database text-blue-400"></i> Postgres
-                </div>
-<div class="tech-badge">
-<i class="fas fa-bolt text-red-400"></i> Redis
-                </div>
-<div class="tech-badge">
-<i class="fab fa-golang text-cyan-400"></i> GoLang
-                </div>
-<div class="tech-badge">
-<i class="fas fa-microchip text-purple-400"></i> Groq LLM
-                </div>
 </div>
 </div>
 <!-- Footer -->
-<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20 pointer-events-none">
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
 <div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
 <div class="flex gap-2">
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
-<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Indicator pagină curentă -->
-<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
@@ -413,12 +351,45 @@
 </div>
 </div>
 <script>
+    // Плавающая анимация для иконок
+    function initFloatingAnimation() {
+        const floatingIcons = document.querySelectorAll('.floating-icon');
+        
+        floatingIcons.forEach((icon, index) => {
+            // Разные параметры для каждой иконки
+            const amplitude = 8 + Math.random() * 6; // 8-14px
+            const duration = 2500 + index * 400; // разная скорость
+            const delay = index * 300; // смещение фазы
+            
+            let startTime = null;
+            
+            function animate(timestamp) {
+                if (!startTime) startTime = timestamp - delay;
+                const elapsed = timestamp - startTime;
+                
+                // Синусоидальное движение
+                const offset = Math.sin((elapsed / duration) * Math.PI * 2) * amplitude;
+                icon.style.transform = icon.style.transform.replace(/translateY\([^)]*\)/, '') + ` translateY(${offset}px)`;
+                
+                requestAnimationFrame(animate);
+            }
+            
+            requestAnimationFrame(animate);
+        });
+    }
+    
+    initFloatingAnimation();
+
     function runAutoHoverSequence() {
-        const row1 = document.querySelectorAll('.process-row:first-of-type .step-card');
-        const row2 = document.querySelectorAll('.process-row:last-of-type .step-card');
-        // Row 1: 1->2->3, Row 2 is reversed visually: 6<-5<-4, animate 4->5->6
-        const row2Arr = Array.from(row2).reverse();
-        const elements = [...row1, ...row2Arr];
+        const bookCard = document.querySelector('.book-card');
+        const floatingIcons = document.querySelectorAll('.floating-icon');
+        const featureItems = document.querySelectorAll('.feature-item');
+        
+        const elements = [
+            bookCard,
+            // ...floatingIcons,
+            ...featureItems
+        ].filter(Boolean);
         
         let index = 0;
         const duration = 1000;
@@ -443,12 +414,56 @@
         setTimeout(animateNext, 300);
     }
     
+    runAutoHoverSequence();
+    setInterval(runAutoHoverSequence, 7000);
+
     window.addEventListener('message', (e) => {
         if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+        if (e.data && e.data.type === 'setLang') applyLang(e.data.lang);
     });
-    
-    runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 12000);
+</script>
+
+<script>
+    const _i18n = {
+        en: {
+            section_label: 'Education',
+            page_title: 'VerifyX Methodology',
+            subtitle: "We don't just provide a tool — we help develop critical thinking.",
+            book_title: 'Knowledge Base',
+            book_subtitle: 'Fundamentals of media literacy and digital hygiene',
+            role_title: 'VerifyX Role',
+            role_text: 'Our AI automates the routine collection of facts and evidence from hundreds of sources, but <span class="text-blue-400 font-bold">the final decision always rests with a person</span> armed with knowledge.',
+            feat1_title: 'Knowledge Library',
+            feat1_desc: 'A collection of the best materials, books, and articles on OSINT (open-source intelligence), fact-checking, and the psychology of manipulation.',
+            feat2_title: 'Practical Guides',
+            feat2_desc: 'Step-by-step instructions: how to identify a verified account, how to check a photo\'s authenticity, and how to avoid fraud.',
+            feat3_title: 'Expert Tips',
+            feat3_desc: 'Recommendations for analyzing sources and identifying hidden propaganda in news headlines.'
+        },
+        ru: {
+            section_label: '\u041e\u0431\u0440\u0430\u0437\u043e\u0432\u0430\u043d\u0438\u0435',
+            page_title: '\u041c\u0435\u0442\u043e\u0434\u043e\u043b\u043e\u0433\u0438\u044f VerifyX',
+            subtitle: '\u041c\u044b \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u0434\u0430\u0435\u043c \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442, \u043d\u043e \u0438 \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c \u0440\u0430\u0437\u0432\u0438\u0432\u0430\u0442\u044c \u043a\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043c\u044b\u0448\u043b\u0435\u043d\u0438\u0435.',
+            book_title: '\u0411\u0430\u0437\u0430 \u0417\u043d\u0430\u043d\u0438\u0439',
+            book_subtitle: '\u041e\u0441\u043d\u043e\u0432\u044b \u043c\u0435\u0434\u0438\u0430\u0433\u0440\u0430\u043c\u043e\u0442\u043d\u043e\u0441\u0442\u0438 \u0438 \u0446\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u0433\u0438\u0433\u0438\u0435\u043d\u044b',
+            role_title: '\u0420\u043e\u043b\u044c VerifyX',
+            role_text: '\u041d\u0430\u0448 \u0418\u0418 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0438\u0440\u0443\u0435\u0442 \u0440\u0443\u0442\u0438\u043d\u043d\u044b\u0439 \u0441\u0431\u043e\u0440 \u0444\u0430\u043a\u0442\u043e\u0432 \u0438 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432 \u0438\u0437 \u0441\u043e\u0442\u0435\u043d \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432, \u043d\u043e <span class="text-blue-400 font-bold">\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u0432\u0441\u0435\u0433\u0434\u0430 \u043e\u0441\u0442\u0430\u0435\u0442\u0441\u044f \u0437\u0430 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c</span>, \u0432\u043e\u043e\u0440\u0443\u0436\u0435\u043d\u043d\u044b\u043c \u0437\u043d\u0430\u043d\u0438\u044f\u043c\u0438.',
+            feat1_title: '\u0411\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0437\u043d\u0430\u043d\u0438\u0439',
+            feat1_desc: '\u0421\u043e\u0431\u0440\u0430\u043d\u0438\u0435 \u043b\u0443\u0447\u0448\u0438\u0445 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u043e\u0432, \u043a\u043d\u0438\u0433 \u0438 \u0441\u0442\u0430\u0442\u0435\u0439 \u043f\u043e OSINT (\u0440\u0430\u0437\u0432\u0435\u0434\u043a\u0430 \u043f\u043e \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430\u043c), \u0444\u0430\u043a\u0442\u0447\u0435\u043a\u0438\u043d\u0433\u0443 \u0438 \u043f\u0441\u0438\u0445\u043e\u043b\u043e\u0433\u0438\u0438 \u043c\u0430\u043d\u0438\u043f\u0443\u043b\u044f\u0446\u0438\u0439.',
+            feat2_title: '\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0433\u0430\u0439\u0434\u044b',
+            feat2_desc: '\u041f\u043e\u0448\u0430\u0433\u043e\u0432\u044b\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438: \u043a\u0430\u043a \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0442\u044c \u0432\u0435\u0440\u0438\u0444\u0438\u0446\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u0430\u043a\u043a\u0430\u0443\u043d\u0442, \u043a\u0430\u043a \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0444\u043e\u0442\u043e \u043d\u0430 \u043f\u043e\u0434\u043b\u0438\u043d\u043d\u043e\u0441\u0442\u044c \u0438 \u0438\u0437\u0431\u0435\u0436\u0430\u0442\u044c \u043c\u043e\u0448\u0435\u043d\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u0430.',
+            feat3_title: '\u0421\u043e\u0432\u0435\u0442\u044b \u044d\u043a\u0441\u043f\u0435\u0440\u0442\u043e\u0432',
+            feat3_desc: '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438 \u043f\u043e \u0430\u043d\u0430\u043b\u0438\u0437\u0443 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432 \u0438 \u0432\u044b\u044f\u0432\u043b\u0435\u043d\u0438\u044e \u0441\u043a\u0440\u044b\u0442\u043e\u0439 \u043f\u0440\u043e\u043f\u0430\u0433\u0430\u043d\u0434\u044b \u0432 \u043d\u043e\u0432\u043e\u0441\u0442\u043d\u044b\u0445 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0430\u0445.'
+        }
+    };
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (_i18n[lang] && _i18n[lang][key] !== undefined) el.innerHTML = _i18n[lang][key];
+        });
+    }
+    applyLang('en');
 </script>
 </body>
 </html>

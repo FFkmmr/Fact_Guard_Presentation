@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VerifyX - Platforms</title>
+<title>VerifyX - AI Architecture</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -18,7 +18,7 @@
         .slide-container {
             width: 1280px;
             height: 720px;
-            background-color: #091224;
+            background-color: #091224; /* Deep dark blue base */
             position: relative;
             display: flex;
             flex-direction: column;
@@ -26,40 +26,30 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Background Effects */
-        .glow-top-right {
+        /* Background Glows */
+        .glow-top {
             position: absolute;
-            top: -150px;
-            right: -100px;
-            width: 600px;
-            height: 600px;
-            background-color: #1e3a8a; /* Blue-900 */
+            top: -200px;
+            left: 20%;
+            width: 800px;
+            height: 400px;
+            background-color: #1e3a8a;
             filter: blur(120px);
             border-radius: 50%;
             opacity: 0.3;
             z-index: 0;
         }
-        .glow-bottom-left {
+        .glow-bottom-right {
             position: absolute;
             bottom: -150px;
-            left: -100px;
-            width: 500px;
-            height: 500px;
-            background-color: #3b82f6; /* Blue-500 */
-            filter: blur(140px);
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background-color: #3b82f6;
+            filter: blur(150px);
             border-radius: 50%;
             opacity: 0.15;
             z-index: 0;
-        }
-        
-        /* Grid Pattern Overlay */
-        .grid-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.3;
-            z-index: 1;
         }
 
         .content-wrapper {
@@ -71,85 +61,176 @@
             padding: 40px 60px;
         }
 
-        /* Header Styles */
+        /* Header */
+        /* .header-section {
+            
+        } */
         .header-line {
             width: 60px;
             height: 4px;
             background-color: #3B82F6;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             border-radius: 2px;
         }
 
-        /* Card Styles */
-        .platform-card {
-            background-color: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 16px;
-            padding: 24px;
+        /* Process Flow Layout - Snake Syle */
+        .process-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            transition: all 0.5s ease;
+            justify-content: center;
+            gap: 40px;
             position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* .platform-card:hover, */
-        .platform-card.auto-hover {
-            border-color: rgba(59, 130, 246, 0.6);
-            transform: translateY(-5px);
-            background-color: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+            padding: 0 20px;
+            align-items: center;
         }
 
-        .card-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
+        .process-row {
+            width: 89%;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* Connecting Lines */
+        .connector-line-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            right: 100px;
+            height: 2px;
+            background-color: #1e293b; /* Dark slate */
+            z-index: 1;
+        }
+        
+        .connector-vertical-right {
+            position: absolute;
+            top: 25%;
+            right: 100px; /* Aligns with the center of the last card in row 1 */
+            width: 4px;
+            height: 50%; /* Spans between rows */
+            border-right: 2px dashed #3B82F6;
+            border-bottom: 2px dashed #3B82F6;
+            border-bottom-right-radius: 20px;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* Process Card */
+        .step-card {
+            width: 280px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            backdrop-filter: blur(12px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        /* .step-card:hover, */
+        .step-card.auto-hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.25);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: #0f172a;
+            color: #3B82F6;
+            border: 1px solid #3B82F6;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 16px;
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #60A5FA;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            font-size: 0.75rem;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 5;
         }
 
-        .card-glow {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background-color: rgba(59, 130, 246, 0.1);
-            filter: blur(40px);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-            transition: opacity 0.3s;
-        }
-
-        /* Layout Grid */
-        .cards-grid-top {
+        .step-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 50px;
-            margin-bottom: 24px;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .cards-grid-top .platform-card {
-            width: calc(33.333% - 16px);
+        /* Tech Stack Bar */
+        .tech-stack-bar {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            /* margin-top: 20px; */
+            margin-bottom: 30px;
         }
         
-        .cards-grid-bottom {
+        .tech-badge {
             display: flex;
-            justify-content: center;
-            gap: 50px;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 16px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+        .tech-badge i {
+            color: #cbd5e1;
         }
 
-        .cards-grid-bottom .platform-card {
-            width: calc(33.333% - 16px); 
+        /* Arrow Flow Indicators */
+        .arrow-right {
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%);
+            color: #3B82F6;
+            opacity: 0.5;
+        }
+        .arrow-left {
+            position: absolute;
+            top: 50%;
+            left: -25px;
+            transform: translateY(-50%);
+            color: #3B82F6;
+            opacity: 0.5;
+        }
+        .arrow-down-curved {
+            position: absolute;
+            right: 140px; /* Center of last card */
+            bottom: -30px;
+            color: #3B82F6;
+            font-size: 0.5rem;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
         }
 
     </style>
@@ -157,81 +238,165 @@
 <body>
 <div class="slide-container">
 <!-- Background Elements -->
-<div class="glow-top-right"></div>
-<div class="glow-bottom-left"></div>
-<div class="grid-pattern"></div>
+<div class="glow-top"></div>
+<div class="glow-bottom-right"></div>
+<!-- Grid Overlay -->
+<div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: 1; pointer-events: none;"></div>
 <div class="content-wrapper">
 <!-- Header -->
-<div class="mb-5">
+<div class="header-section">
 <div class="header-line"></div>
-<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">Ecosistemul proiectului</h2>
-<h1 class="text-4xl font-black text-white font-montserrat">Funcționalități cheie și public țintă</h1>
-<p class="text-gray-400 mt-2 font-inter max-w-2xl text-lg">VerifyX este disponibil oriunde consumați informație: de la browser până la mesagerie.</p>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2" data-i18n="section_label">Технический процесс</h2>
+<h1 class="text-4xl font-black text-white font-montserrat" data-i18n="page_title">Архитектура ИИ-Агента</h1>
 </div>
-<!-- Cards Container -->
-<div class="flex-1 flex flex-col justify-center">
-<!-- Row 1: 3 Cards -->
-<div class="cards-grid-top">
-<!-- Web Card -->
-<div class="platform-card">
-<div class="card-glow"></div>
-<div style="display: flex; align-items: center; gap: 20px;">
-    <div class="card-icon">
-    <i class="fas fa-globe"></i>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Platformă web</h3>
+<div class="text-right max-w-md">
+<p class="text-gray-400 text-sm font-inter" data-i18n="subtitle">Пайплайн обработки данных от получения ссылки до финального вердикта о достоверности.</p>
 </div>
-<p class="text-gray-400 text-sm leading-relaxed font-inter">
-                        Portal complet pentru analiza aprofundată a articolelor, știrilor și linkurilor printr-o interfață intuitivă și ușor de utilizat.
+</div>
+</div>
+<!-- Process Flow -->
+<div class="process-container">
+<!-- Row 1: Steps 1-3 -->
+<div class="process-row">
+<!-- Step 1 -->
+<div class="step-card">
+<div class="step-number">1</div>
+<div class="step-icon-box bg-slate-700/30 text-slate-300 border border-slate-600/30">
+<i class="fas fa-keyboard"></i>
+</div>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step1_title">Ввод данных</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step1_desc">
+                        Пользователь отправляет текст или URL. Система извлекает основной контент.
+                    </p>
+<i class="fas fa-chevron-right arrow-right"></i>
+</div>
+<!-- Step 2 -->
+<div class="step-card">
+<div class="step-number">2</div>
+<div class="step-icon-box bg-slate-700/30 text-slate-300 border border-slate-600/30">
+<i class="fas fa-filter"></i>
+</div>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step2_title">Предобработка</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step2_desc">
+                        Очистка HTML, определение языка, нормализация текста для анализа.
+                    </p>
+<i class="fas fa-chevron-right arrow-right"></i>
+</div>
+<!-- Step 3 -->
+<div class="step-card">
+<div class="step-number">3</div>
+<div class="step-icon-box bg-purple-900/30 text-purple-400 border border-purple-500/30">
+<i class="fas fa-brain"></i>
+</div>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step3_title">Анализ манипуляций</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step3_desc">
+                        LLM проверяет текст на кликбейт, эмоциональную окраску и пропаганду.
+                    </p>
+<div style="bottom: -2.5rem;" class="absolute left-1/2 transform -translate-x-1/2 text-blue-500 text-xl animate-bounce">
+<i class="fas fa-arrow-down"></i>
+</div>
+</div>
+</div>
+<!-- Row 2: Steps 4-6 (Reversed visual flow concept, but displayed logically left to right for readability, connected via snake path) -->
+<!-- Actually, let's keep it Left-to-Right for reading, but visually indicate the flow wrapping -->
+<div class="process-row">
+<!-- Step 6 (Final) - Placing it last visually -->
+<!-- Let's arrange logically: 4 -> 5 -> 6 -->
+<!-- Step 6 -->
+<div class="step-card" style="border-color: rgba(16, 185, 129, 0.4);">
+<div class="step-number bg-emerald-900 border-emerald-500 text-emerald-400">6</div>
+<div class="step-icon-box bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
+<i class="fas fa-clipboard-check"></i>
+</div>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step6_title">Финальная сводка</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step6_desc">
+                        Генерация отчета с метриками достоверности, ссылками и вердиктом.
                     </p>
 </div>
-<!-- Extension Card -->
-<div class="platform-card">
-<div class="card-glow"></div>
-<div style="display: flex; align-items: center; gap: 20px;">
-    <div class="card-icon">
-    <i class="fas fa-puzzle-piece"></i>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Extensie pentru browser</h3>
+<!-- Step 5 -->
+<div class="step-card">
+<div class="step-number">5</div>
+<div class="step-icon-box bg-orange-900/30 text-orange-400 border border-orange-500/30">
+<i class="fas fa-balance-scale-right"></i>
 </div>
-<p class="text-gray-400 text-sm leading-relaxed font-inter">
-                            Verificare instantanee a conținutului paginii cu un singur click. Indicatori de încredere direct în rezultatele căutării.
-                        </p>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step5_title">Сравнение фактов</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step5_desc">
+                        Cross-check утверждений. Выявление искажений и противоречий.
+                    </p>
+<i class="fas fa-chevron-left arrow-left"></i>
 </div>
+<!-- Step 4 -->
+<div class="step-card">
+<div class="step-number">4</div>
+<div class="step-icon-box bg-cyan-900/30 text-cyan-400 border border-cyan-500/30">
+<i class="fas fa-globe"></i>
 </div>
-<!-- Row 2: 2 Cards Centered -->
-<div class="cards-grid-bottom">
-<!-- Telegram Card -->
-<div class="platform-card">
-<div class="card-glow"></div>
-<div style="display: flex; align-items: center; gap: 20px;">
-    <div class="card-icon" style="color: #2AABEE; background-color: rgba(42, 171, 238, 0.1); border-color: rgba(42, 171, 238, 0.2);">
-    <i class="fab fa-telegram-plane"></i>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">Bot Telegram</h3>
-</div>
-<p class="text-gray-400 text-sm leading-relaxed font-inter">
-                            Cea mai rapidă metodă de verificare. Trimiteți un link sau un text botului și primiți un rezumat scurt cu verdictul AI.
-                        </p>
-</div>
-<!-- API Card -->
-<div class="platform-card">
-<div class="card-glow"></div>
-<div style="display: flex; align-items: center; gap: 20px;">
-    <div class="card-icon" style="color: #10B981; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);">
-    <i class="fas fa-code"></i>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2 font-montserrat">API pentru dezvoltatori</h3>
-</div>
-<p class="text-gray-400 text-sm leading-relaxed font-inter">
-                            REST API pentru integrarea tehnologiilor VerifyX în CMS-uri terțe, agregatoare de știri și sisteme corporative.
-                        </p>
+<h3 class="text-white font-bold font-montserrat" data-i18n="step4_title">Семантический поиск</h3>
+<p class="text-xs text-gray-400 font-inter leading-relaxed" data-i18n="step4_desc">
+                        Поиск релевантных источников и похожих статей в проверенных базах.
+                    </p>
+<i class="fas fa-chevron-left arrow-left"></i>
 </div>
 </div>
+<!-- Visual Connector for Snake Flow (Hidden on mobile, absolute here) -->
+<!-- Connecting Card 3 to Card 4 -->
+<svg class="absolute top-0 left-0 w-full h-full pointer-events-none" style="z-index: 1;">
+<!-- Path from Card 3 bottom to Card 4 top (assuming alignment) -->
+<!-- We need a line from Row 1 Item 3 (Right side) to Row 2 Item 1 (Left side) ? No, that's Z-pattern.
+                     The design above is 1-2-3 (top), 4-5-6 (bottom). 
+                     To make it flow, we need a line from 3 down to 6? No, 3 to 4.
+                     Let's draw a line from bottom of 3 to top of 4.
+                     Since they are vertically aligned (1 over 4, 2 over 5, 3 over 6) -> 
+                     Actually, standard reading is Z-pattern. 
+                     1 -> 2 -> 3
+                     (diagonal)
+                     4 -> 5 -> 6
+                -->
+<defs>
+<lineargradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.8"></stop>
+</lineargradient>
+</defs>
+<!-- Diagonal line from Right of Row1 to Left of Row2 -->
+<path d="M 1000 180 C 1100 180, 1100 250, 640 250 C 180 250, 180 320, 280 320" fill="none" opacity="0.4" stroke="url(#grad1)" stroke-dasharray="5,5" stroke-width="2" style="display: none;"></path>
+<!-- SVG is hard to align perfectly without JS coordinates, relying on CSS layout and arrows inside cards instead. -->
+</svg>
+<!-- Connection Line specific correction: 
+                 Row 1: 1 -> 2 -> 3
+                 Row 2: 4 -> 5 -> 6
+                 Logic: 3 is Analysis. 4 is Search. 
+                 Let's assume the flow is Z-shaped. 
+                 Added a bounce arrow under card 3 to suggest moving to next line.
+            -->
+</div>
+<!-- Infrastructure Bar -->
+<div class="tech-stack-bar">
+<div class="text-white font-bold font-montserrat text-sm tracking-wider uppercase flex items-center gap-2">
+<i class="fas fa-server text-blue-500"></i> <span data-i18n="infra_title">Инфраструктура</span>
+            </div>
+<div class="flex gap-4">
+<div class="tech-badge">
+<i class="fas fa-layer-group text-blue-400"></i> Docker
+                </div>
+<div class="tech-badge">
+<i class="fas fa-database text-blue-400"></i> Postgres
+                </div>
+<div class="tech-badge">
+<i class="fas fa-bolt text-red-400"></i> Redis
+                </div>
+<div class="tech-badge">
+<i class="fab fa-golang text-cyan-400"></i> GoLang
+                </div>
+<div class="tech-badge">
+<i class="fas fa-microchip text-purple-400"></i> Groq LLM
+                </div>
 </div>
 </div>
 <!-- Footer -->
-<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
+<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20 pointer-events-none">
 <div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
 <div class="flex gap-2">
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
@@ -242,16 +407,17 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
-<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
 </div>
 </div>
 <script>
     function runAutoHoverSequence() {
-        const topCards = document.querySelectorAll('.cards-grid-top .platform-card');
-        const bottomCards = document.querySelectorAll('.cards-grid-bottom .platform-card');
-        const elements = [...topCards, ...bottomCards];
+        const row1 = document.querySelectorAll('.process-row:first-of-type .step-card');
+        const row2 = document.querySelectorAll('.process-row:last-of-type .step-card');
+        // Row 1: 1->2->3, Row 2 is reversed visually: 6<-5<-4, animate 4->5->6
+        const row2Arr = Array.from(row2).reverse();
+        const elements = [...row1, ...row2Arr];
         
         let index = 0;
         const duration = 1000;
@@ -278,10 +444,60 @@
     
     window.addEventListener('message', (e) => {
         if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+        if (e.data && e.data.type === 'setLang') applyLang(e.data.lang);
     });
     
     runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 12000);
+    setInterval(runAutoHoverSequence, 7000);
+</script>
+
+<script>
+    const _i18n = {
+        en: {
+            section_label: 'Technical Process',
+            page_title: 'AI Agent Architecture',
+            subtitle: 'Data processing pipeline from receiving a link to the final credibility verdict.',
+            step1_title: 'Input',
+            step1_desc: 'The user submits text or a URL. The system extracts the main content.',
+            step2_title: 'Pre-processing',
+            step2_desc: 'HTML cleanup, language detection, text normalization for analysis.',
+            step3_title: 'Manipulation Analysis',
+            step3_desc: 'LLM checks text for clickbait, emotional tone, and propaganda.',
+            step4_title: 'Semantic Search',
+            step4_desc: 'Searching for relevant sources and similar articles in verified databases.',
+            step5_title: 'Fact Comparison',
+            step5_desc: 'Cross-checking claims. Detecting distortions and contradictions.',
+            step6_title: 'Final Summary',
+            step6_desc: 'Generating a report with credibility metrics, links, and a verdict.',
+            infra_title: 'Infrastructure'
+        },
+        ru: {
+            section_label: '\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043f\u0440\u043e\u0446\u0435\u0441\u0441',
+            page_title: '\u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430 \u0418\u0418-\u0410\u0433\u0435\u043d\u0442\u0430',
+            subtitle: '\u041f\u0430\u0439\u043f\u043b\u0430\u0439\u043d \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0434\u0430\u043d\u043d\u044b\u0445 \u043e\u0442 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0441\u0441\u044b\u043b\u043a\u0438 \u0434\u043e \u0444\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u0432\u0435\u0440\u0434\u0438\u043a\u0442\u0430 \u043e \u0434\u043e\u0441\u0442\u043e\u0432\u0435\u0440\u043d\u043e\u0441\u0442\u0438.',
+            step1_title: '\u0412\u0432\u043e\u0434 \u0434\u0430\u043d\u043d\u044b\u0445',
+            step1_desc: '\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 \u0442\u0435\u043a\u0441\u0442 \u0438\u043b\u0438 URL. \u0421\u0438\u0441\u0442\u0435\u043c\u0430 \u0438\u0437\u0432\u043b\u0435\u043a\u0430\u0435\u0442 \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 \u043a\u043e\u043d\u0442\u0435\u043d\u0442.',
+            step2_title: '\u041f\u0440\u0435\u0434\u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430',
+            step2_desc: '\u041e\u0447\u0438\u0441\u0442\u043a\u0430 HTML, \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u0435 \u044f\u0437\u044b\u043a\u0430, \u043d\u043e\u0440\u043c\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u0442\u0435\u043a\u0441\u0442\u0430 \u0434\u043b\u044f \u0430\u043d\u0430\u043b\u0438\u0437\u0430.',
+            step3_title: '\u0410\u043d\u0430\u043b\u0438\u0437 \u043c\u0430\u043d\u0438\u043f\u0443\u043b\u044f\u0446\u0438\u0439',
+            step3_desc: 'LLM \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u0442 \u0442\u0435\u043a\u0441\u0442 \u043d\u0430 \u043a\u043b\u0438\u043a\u0431\u0435\u0439\u0442, \u044d\u043c\u043e\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u0443\u044e \u043e\u043a\u0440\u0430\u0441\u043a\u0443 \u0438 \u043f\u0440\u043e\u043f\u0430\u0433\u0430\u043d\u0434\u0443.',
+            step4_title: '\u0421\u0435\u043c\u0430\u043d\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043f\u043e\u0438\u0441\u043a',
+            step4_desc: '\u041f\u043e\u0438\u0441\u043a \u0440\u0435\u043b\u0435\u0432\u0430\u043d\u0442\u043d\u044b\u0445 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432 \u0438 \u043f\u043e\u0445\u043e\u0436\u0438\u0445 \u0441\u0442\u0430\u0442\u0435\u0439 \u0432 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u044b\u0445 \u0431\u0430\u0437\u0430\u0445.',
+            step5_title: '\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0444\u0430\u043a\u0442\u043e\u0432',
+            step5_desc: 'Cross-check \u0443\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0439. \u0412\u044b\u044f\u0432\u043b\u0435\u043d\u0438\u0435 \u0438\u0441\u043a\u0430\u0436\u0435\u043d\u0438\u0439 \u0438 \u043f\u0440\u043e\u0442\u0438\u0432\u043e\u0440\u0435\u0447\u0438\u0439.',
+            step6_title: '\u0424\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0441\u0432\u043e\u0434\u043a\u0430',
+            step6_desc: '\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f \u043e\u0442\u0447\u0435\u0442\u0430 \u0441 \u043c\u0435\u0442\u0440\u0438\u043a\u0430\u043c\u0438 \u0434\u043e\u0441\u0442\u043e\u0432\u0435\u0440\u043d\u043e\u0441\u0442\u0438, \u0441\u0441\u044b\u043b\u043a\u0430\u043c\u0438 \u0438 \u0432\u0435\u0440\u0434\u0438\u043a\u0442\u043e\u043c.',
+            infra_title: '\u0418\u043d\u0444\u0440\u0430\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430'
+        }
+    };
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (_i18n[lang] && _i18n[lang][key] !== undefined) el.innerHTML = _i18n[lang][key];
+        });
+    }
+    applyLang('en');
 </script>
 </body>
 </html>

@@ -1,223 +1,229 @@
 <!DOCTYPE html>
-<html lang="ro">
+
+<html lang="ru">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VerifyX - Echipa</title>
+<title>VerifyX - Problem &amp; Solution</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #000;
-}
-.slide-container {
-    width: 1280px;
-    height: 720px;
-    background-color: #091224;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-}
+        body { margin: 0; padding: 0; overflow: hidden; background-color: #000; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #091224;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Glow effects using blurred divs */
+        .glow-red {
+            position: absolute;
+            top: 20%;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background-color: #7f1d1d; /* Red-900 */
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .glow-blue {
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 700px;
+            height: 700px;
+            background-color: #1e3a8a; /* Blue-900 */
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.25;
+            z-index: 0;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            padding: 20px 60px 60px 60px;
+        }
 
-/* Background */
-.glow-top-right {
-    position: absolute;
-    top: -150px;
-    right: -100px;
-    width: 600px;
-    height: 600px;
-    background-color: #1e3a8a;
-    filter: blur(120px);
-    border-radius: 50%;
-    opacity: 0.3;
-    z-index: 0;
-}
-.glow-bottom-left {
-    position: absolute;
-    bottom: -150px;
-    left: -100px;
-    width: 500px;
-    height: 500px;
-    background-color: #3b82f6;
-    filter: blur(140px);
-    border-radius: 50%;
-    opacity: 0.15;
-    z-index: 0;
-}
-.grid-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.3;
-    z-index: 1;
-}
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.5s ease;
+        }
 
-.content-wrapper {
-    position: relative;
-    z-index: 10;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 40px 60px;
-}
+        /* .card:hover, */
+        .card.auto-hover {
+            transform: translateX(8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+        
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
 
-.header-line {
-    width: 60px;
-    height: 4px;
-    background-color: #3B82F6;
-    margin-bottom: 16px;
-    border-radius: 2px;
-}
+        .problem-icon {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
 
-/* Cards */
-.platform-card {
-    background-color: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 25px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    transition: all 0.5s ease;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    height: 300px;
-    width: 200px;
-}
-.platform-card.auto-hover {
-    border-color: rgba(59, 130, 246, 0.6);
-    transform: translateY(-5px);
-    background-color: rgba(15, 23, 42, 0.8);
-    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
-}
+        .solution-icon {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
 
-.card-icon {
-    width: 150px;
-    height: 160px;
-    border-radius: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    background-color: rgba(59, 130, 246, 0.1);
-    border: 2px solid rgba(59, 130, 246, 0.3);
-    overflow: hidden;
-}
-.card-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-}
-
-.card-glow {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
-    background-color: rgba(59, 130, 246, 0.1);
-    filter: blur(40px);
-    border-radius: 50%;
-    transform: translate(30%, -30%);
-}
-
-/* Layout */
-.cards-grid {
-    position: relative;
-    top: -50px;
-    display: flex;
-    /* grid-template-columns: repeat(3, 1fr); */
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+        .divider {
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 40px 40px 0 40px;
+            position: relative;
+        }
+        
+        .divider-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .header-section {
+            padding: 40px 60px 10px 60px;
+            z-index: 20;
+        }
+    </style>
 </head>
-
 <body>
 <div class="slide-container">
-
-<div class="glow-top-right"></div>
-<div class="glow-bottom-left"></div>
-<div class="grid-pattern"></div>
-
-<div class="content-wrapper">
-
+<!-- Backgrounds -->
+<div class="glow-red"></div>
+<div class="glow-blue"></div>
 <!-- Header -->
-<div class="">
-<div class="header-line"></div>
-<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">
-Echipa Proiectului
-</h2>
-<h1 class="text-4xl font-black text-white font-montserrat">
-Oameni care construiesc VerifyX
-</h1>
-<p class="text-gray-400 mt-2 font-inter max-w-2xl text-md">
-Experți în strategie, tehnologie și jurnalism care dezvoltă un ecosistem modern de verificare a informației.
-</p>
+<div class="header-section">
+<div class="flex items-center gap-4 mb-2">
+<div class="h-1 w-12 bg-blue-500 rounded-full"></div>
+<h2 class="text-blue-500 font-bold tracking-widest uppercase text-xs font-montserrat" data-i18n="section_label">Контекст проекта</h2>
 </div>
-
-<!-- Cards -->
-<div class="flex-1 flex items-center">
-<div class="cards-grid w-full">
-
-<div class="platform-card">
-<div class="card-glow"></div>
-<div class="card-icon"><img src="../icons/users/daniel.jpg" alt="Gulcinschi Daniel"></div>
-<h3 class="text-xl font-bold text-white font-montserrat">Gulcinschi Daniel</h3>
-<p class="text-blue-400 text-sm mt-1 font-medium">Product Strategist & Designer</p>
+<h1 class="text-4xl font-black text-white font-montserrat" data-i18n="page_title">Проблема и Решение</h1>
 </div>
-
-<div class="platform-card">
-<div class="card-glow"></div>
-<div class="card-icon"><img src="../icons/users/denis.jpg" alt="Buga Denis"></div>
-<h3 class="text-xl font-bold text-white font-montserrat">Buga Denis</h3>
-<p class="text-blue-400 text-sm mt-1 font-medium">Communication Specialist</p>
+<!-- Main Content -->
+<div class="content-wrapper">
+<!-- Left Column: Problem -->
+<div class="flex-1 flex flex-col justify-center">
+<div class="mb-6 pl-4 border-l-4 border-red-500/80">
+<h3 class="text-2xl font-bold text-white mb-1 font-montserrat" data-i18n="prob_col_title">Информационный Хаос</h3>
+<p class="text-gray-400 text-sm" data-i18n="prob_col_sub">Вызовы, с которыми сталкиваются пользователи</p>
 </div>
-
-<div class="platform-card">
-<div class="card-glow"></div>
-<div class="card-icon"><img src="../icons/users/arina.jpg" alt="Bontaruc Arina"></div>
-<h3 class="text-xl font-bold text-white font-montserrat">Bontaruc Arina</h3>
-<p class="text-blue-400 text-sm mt-1 font-medium">Expert în Jurnalism & Etică</p>
+<div class="card">
+<div class="icon-box problem-icon">
+<i class="fas fa-chart-line"></i>
 </div>
-
-<div class="platform-card">
-<div class="card-glow"></div>
-<div class="card-icon"><img src="../icons/users/Iulik.jpg" alt="Terentii Iulian"></div>
-<h3 class="text-xl font-bold text-white font-montserrat">Terentii Iulian</h3>
-<p class="text-blue-400 text-sm mt-1 font-medium">Full-Stack Developer</p>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="prob1_title">Рост объема фейков</h4>
+<p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob1_desc">Манипулятивные новости и дипфейки распространяются в 6 раз быстрее правды.</p>
 </div>
-
-<div class="platform-card">
-<div class="card-glow"></div>
-<div class="card-icon"><img src="../icons/users/eugen.jpg" alt="Șerșun Eugen"></div>
-<h3 class="text-xl font-bold text-white font-montserrat">Șerșun Eugen</h3>
-<p class="text-blue-400 text-sm mt-1 font-medium">AI & Backend Developer</p>
 </div>
-
+<div class="card">
+<div class="icon-box problem-icon">
+<i class="fas fa-hourglass-half"></i>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="prob2_title">Нехватка времени</h4>
+<p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob2_desc">У пользователей нет ресурсов проверять первоисточники и сравнивать факты вручную.</p>
+</div>
+</div>
+<div class="card">
+<div class="icon-box problem-icon">
+<i class="fas fa-magnifying-glass-chart"></i>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="prob3_title">Сложность верификации</h4>
+<p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob3_desc">Трудно выявить искажения фактов и определить первоисточник без спец. инструментов.</p>
 </div>
 </div>
 </div>
-
-<!-- Footer (identic ca stil) -->
-<div class="absolute bottom-6 left-0 w-full px-16 flex justify-between items-center z-20">
+<!-- Divider -->
+<div class="divider">
+<div class="divider-icon">
+<i class="fas fa-arrow-right"></i>
+</div>
+</div>
+<!-- Right Column: Solution -->
+<div class="flex-1 flex flex-col justify-center">
+<div class="mb-6 pl-4 border-l-4 border-blue-500">
+<h3 class="text-2xl font-bold text-white mb-1 font-montserrat" data-i18n="sol_col_title">Экосистема VerifyX</h3>
+<p class="text-gray-400 text-sm" data-i18n="sol_col_sub">Комплексный подход к восстановлению доверия</p>
+</div>
+<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
+<div class="icon-box solution-icon">
+<i class="fas fa-robot"></i>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="sol1_title">AI-Анализ манипуляций</h4>
+<p class="text-blue-100/80 text-sm leading-relaxed" data-i18n="sol1_desc">Автоматическое выявление пропаганды и эмоциональной окраски текста (LLM + правила).</p>
+</div>
+</div>
+<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
+<div class="icon-box solution-icon">
+<i class="fas fa-globe"></i>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="sol2_title">Кросс-проверка источников</h4>
+<p class="text-blue-100/80 text-sm leading-relaxed" data-i18n="sol2_desc">Поиск похожих материалов в разных СМИ для сравнения фактов и контекста.</p>
+</div>
+</div>
+<div class="card" style="background-color: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
+<div class="icon-box solution-icon">
+<i class="fas fa-file-contract"></i>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1 font-montserrat" data-i18n="sol3_title">Прозрачные отчеты</h4>
+<p class="text-blue-100/80 text-sm leading-relaxed" data-i18n="sol3_desc">Оценка надежности с метриками, ссылками на оригиналы и рекомендациями.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-6 w-full px-16 flex justify-between items-center z-20">
 <div class="text-blue-300/40 text-sm font-medium tracking-widest">VerifyX 2026</div>
 <div class="flex gap-2">
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
-<div class="w-8 h-2 rounded-full bg-blue-500"></div>
-<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
@@ -226,35 +232,96 @@ Experți în strategie, tehnologie și jurnalism care dezvoltă un ecosistem mod
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
 </div>
-
 </div>
-
 <script>
-function runAutoHoverSequence() {
-    const elements = document.querySelectorAll('.platform-card');
-    let index = 0;
-    const duration = 1000;
-    const overlap = 500;
-
-    function animateNext() {
-        if (index >= elements.length) return;
-        const el = elements[index];
-        el.classList.add('auto-hover');
-        setTimeout(() => {
-            el.classList.remove('auto-hover');
-        }, duration);
-        index++;
-        if (index < elements.length) {
-            setTimeout(animateNext, duration - overlap);
+    function runAutoHoverSequence() {
+        const leftCards = document.querySelectorAll('.flex-1:first-of-type .card');
+        const rightCards = document.querySelectorAll('.flex-1:last-of-type .card');
+        const elements = [...leftCards, ...rightCards];
+        
+        let index = 0;
+        const duration = 1000;
+        const overlap = 500;
+        
+        function animateNext() {
+            if (index >= elements.length) return;
+            
+            const el = elements[index];
+            el.classList.add('auto-hover');
+            
+            setTimeout(() => {
+                el.classList.remove('auto-hover');
+            }, duration);
+            
+            index++;
+            if (index < elements.length) {
+                setTimeout(animateNext, duration - overlap);
+            }
         }
+        
+        setTimeout(animateNext, 300);
     }
-    setTimeout(animateNext, 300);
-}
-
+    
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+        if (e.data && e.data.type === 'setLang') applyLang(e.data.lang);
+    });
     
     runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 12000);
+    setInterval(runAutoHoverSequence, 7000);
 </script>
 
+<script>
+    const _i18n = {
+        en: {
+            section_label: 'Project Context',
+            page_title: 'Problem & Solution',
+            prob_col_title: 'Information Chaos',
+            prob_col_sub: 'Challenges faced by users',
+            prob1_title: 'Rise of Fake News',
+            prob1_desc: 'Manipulative news and deepfakes spread 6\u00d7 faster than the truth.',
+            prob2_title: 'Lack of Time',
+            prob2_desc: 'Users lack the resources to verify primary sources and compare facts manually.',
+            prob3_title: 'Verification Complexity',
+            prob3_desc: 'Hard to detect fact distortions and trace the original source without specialized tools.',
+            sol_col_title: 'VerifyX Ecosystem',
+            sol_col_sub: 'A comprehensive approach to restoring trust',
+            sol1_title: 'AI Manipulation Analysis',
+            sol1_desc: 'Automatic detection of propaganda and emotional tone in text (LLM + rules).',
+            sol2_title: 'Cross-Source Verification',
+            sol2_desc: 'Searching for similar materials across different media to compare facts and context.',
+            sol3_title: 'Transparent Reports',
+            sol3_desc: 'Reliability assessment with metrics, links to originals, and recommendations.'
+        },
+        ru: {
+            section_label: '\u041a\u043e\u043d\u0442\u0435\u043a\u0441\u0442 \u043f\u0440\u043e\u0435\u043a\u0442\u0430',
+            page_title: '\u041f\u0440\u043e\u0431\u043b\u0435\u043c\u0430 \u0438 \u0420\u0435\u0448\u0435\u043d\u0438\u0435',
+            prob_col_title: '\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0439 \u0425\u0430\u043e\u0441',
+            prob_col_sub: '\u0412\u044b\u0437\u043e\u0432\u044b, \u0441 \u043a\u043e\u0442\u043e\u0440\u044b\u043c\u0438 \u0441\u0442\u0430\u043b\u043a\u0438\u0432\u0430\u044e\u0442\u0441\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438',
+            prob1_title: '\u0420\u043e\u0441\u0442 \u043e\u0431\u044a\u0435\u043c\u0430 \u0444\u0435\u0439\u043a\u043e\u0432',
+            prob1_desc: '\u041c\u0430\u043d\u0438\u043f\u0443\u043b\u044f\u0442\u0438\u0432\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438 \u0438 \u0434\u0438\u043f\u0444\u0435\u0439\u043a\u0438 \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u044f\u044e\u0442\u0441\u044f \u0432 6 \u0440\u0430\u0437 \u0431\u044b\u0441\u0442\u0440\u0435\u0435 \u043f\u0440\u0430\u0432\u0434\u044b.',
+            prob2_title: '\u041d\u0435\u0445\u0432\u0430\u0442\u043a\u0430 \u0432\u0440\u0435\u043c\u0435\u043d\u0438',
+            prob2_desc: '\u0423 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439 \u043d\u0435\u0442 \u0440\u0435\u0441\u0443\u0440\u0441\u043e\u0432 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0442\u044c \u043f\u0435\u0440\u0432\u043e\u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0438 \u0438 \u0441\u0440\u0430\u0432\u043d\u0438\u0432\u0430\u0442\u044c \u0444\u0430\u043a\u0442\u044b \u0432\u0440\u0443\u0447\u043d\u0443\u044e.',
+            prob3_title: '\u0421\u043b\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0432\u0435\u0440\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438',
+            prob3_desc: '\u0422\u0440\u0443\u0434\u043d\u043e \u0432\u044b\u044f\u0432\u0438\u0442\u044c \u0438\u0441\u043a\u0430\u0436\u0435\u043d\u0438\u044f \u0444\u0430\u043a\u0442\u043e\u0432 \u0438 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u043f\u0435\u0440\u0432\u043e\u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u0431\u0435\u0437 \u0441\u043f\u0435\u0446. \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u043e\u0432.',
+            sol_col_title: '\u042d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0430 VerifyX',
+            sol_col_sub: '\u041a\u043e\u043c\u043f\u043b\u0435\u043a\u0441\u043d\u044b\u0439 \u043f\u043e\u0434\u0445\u043e\u0434 \u043a \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044e \u0434\u043e\u0432\u0435\u0440\u0438\u044f',
+            sol1_title: 'AI-\u0410\u043d\u0430\u043b\u0438\u0437 \u043c\u0430\u043d\u0438\u043f\u0443\u043b\u044f\u0446\u0438\u0439',
+            sol1_desc: '\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0432\u044b\u044f\u0432\u043b\u0435\u043d\u0438\u0435 \u043f\u0440\u043e\u043f\u0430\u0433\u0430\u043d\u0434\u044b \u0438 \u044d\u043c\u043e\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u043e\u043a\u0440\u0430\u0441\u043a\u0438 \u0442\u0435\u043a\u0441\u0442\u0430 (LLM + \u043f\u0440\u0430\u0432\u0438\u043b\u0430).',
+            sol2_title: '\u041a\u0440\u043e\u0441\u0441-\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432',
+            sol2_desc: '\u041f\u043e\u0438\u0441\u043a \u043f\u043e\u0445\u043e\u0436\u0438\u0445 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u043e\u0432 \u0432 \u0440\u0430\u0437\u043d\u044b\u0445 \u0421\u041c\u0418 \u0434\u043b\u044f \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f \u0444\u0430\u043a\u0442\u043e\u0432 \u0438 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u0430.',
+            sol3_title: '\u041f\u0440\u043e\u0437\u0440\u0430\u0447\u043d\u044b\u0435 \u043e\u0442\u0447\u0435\u0442\u044b',
+            sol3_desc: '\u041e\u0446\u0435\u043d\u043a\u0430 \u043d\u0430\u0434\u0435\u0436\u043d\u043e\u0441\u0442\u0438 \u0441 \u043c\u0435\u0442\u0440\u0438\u043a\u0430\u043c\u0438, \u0441\u0441\u044b\u043b\u043a\u0430\u043c\u0438 \u043d\u0430 \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044b \u0438 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u044f\u043c\u0438.'
+        }
+    };
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (_i18n[lang] && _i18n[lang][key] !== undefined) el.innerHTML = _i18n[lang][key];
+        });
+    }
+    applyLang('en');
+</script>
 </body>
 </html>

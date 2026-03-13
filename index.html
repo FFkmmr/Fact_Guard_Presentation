@@ -132,11 +132,50 @@
         .hint.visible {
             opacity: 1;
         }
+
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lang-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .lang-btn.active {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .lang-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 <body>
     <iframe id="slideFrame" class="slide-frame" src="slides/slide_1.html"></iframe>
-    
+
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+    </div>
+
     <div class="controls" id="controls">
         <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
         <div class="dots" id="dots"></div>
@@ -144,7 +183,7 @@
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
     </div>
     
-    <div class="hint" id="hint">← → стрелки для навигации | ↑/↓ — первый/последний слайд</div>
+    <div class="hint" id="hint">← → arrows to navigate | ↑/↓ — first/last slide</div>
     
     <script>
         const totalSlides = 9;
@@ -153,6 +192,7 @@
         const IDLE_TIMEOUT = 1500;
         
         let currentSlide = 1;
+        let currentLang = 'en';
         let hideTimer = null;
         
         const frame = document.getElementById('slideFrame');
@@ -214,10 +254,24 @@
             });
         }
         
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            try {
+                frame.contentWindow.postMessage({type: 'setLang', lang: lang}, '*');
+            } catch(e) {}
+            hint.textContent = lang === 'en'
+                ? '← → arrows to navigate | ↑/↓ — first/last slide'
+                : '← → стрелки для навигации | ↑/↓ — первый/последний слайд';
+        }
+
         // Trigger auto-hover animation in slide after it loads
         frame.addEventListener('load', () => {
             try {
                 frame.contentWindow.postMessage('triggerAutoHover', '*');
+                frame.contentWindow.postMessage({type: 'setLang', lang: currentLang}, '*');
             } catch(e) {}
         });
         

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VerifyX - Methodology</title>
+<title>VerifyX - Tech Stack</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -26,28 +26,28 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Background Glows */
-        .glow-circle {
+        /* Background Glows (Solid colors with blur, avoiding gradients) */
+        .glow-blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(100px);
             z-index: 0;
         }
-        .glow-blue-left {
-            top: 20%;
-            left: -150px;
+        .glow-top-right {
+            top: -100px;
+            right: -100px;
             width: 600px;
             height: 600px;
-            background-color: #1e3a8a;
-            opacity: 0.2;
+            background-color: #1e3a8a; /* Blue-900 */
+            opacity: 0.3;
         }
-        .glow-cyan-right {
-            bottom: -100px;
-            right: -100px;
+        .glow-bottom-left {
+            bottom: -150px;
+            left: -50px;
             width: 500px;
             height: 500px;
-            background-color: #0891b2; /* Cyan-600 */
-            opacity: 0.15;
+            background-color: #1e40af; /* Blue-800 */
+            opacity: 0.2;
         }
 
         .content-wrapper {
@@ -55,93 +55,11 @@
             z-index: 10;
             flex: 1;
             display: flex;
-            padding: 0 60px;
-        }
-
-        /* Left Visual Section */
-        .visual-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
+            padding: 40px 60px;
         }
 
-        .book-card {
-            width: 320px;
-            height: 341px;
-            background-color: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
-        }
-
-        .book-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 20px;
-            padding: 2px;
-            background: #3B82F6;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-        }
-
-        .feature-icon-box {
-            width: 48px;
-            height: 48px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #60a5fa;
-            font-size: 1.2rem;
-            transition: all 0.5s ease;
-        }
-
-        .icon-osint {
-            width: 60px;
-            height: 60px;
-            top: 40px;
-            left: -30px;
-            color: #ef4444;
-            font-size: 2rem;
-            transform: rotate(-10deg);
-        }
-
-        .icon-check {
-            width: 50px;
-            height: 50px;  
-            bottom: 84px;
-            right: -712px;
-            color: #10b981;
-            font-size: 1.2rem;
-            transform: rotate(15deg);
-        }
-        
-        .icon-shield {
-            width: 70px;
-            height: 70px;  
-            top: 53px;
-            left: 1074px;
-            color: #3b82f6;
-            font-size: 1.8rem;
-            transform: rotate(-5deg);
-        }
-
-        /* Right Content Section */
+        /* Header */
         .header-line {
             width: 60px;
             height: 4px;
@@ -150,186 +68,293 @@
             border-radius: 2px;
         }
 
-        .feature-list {
-            display: flex;
-            flex-direction: column;
+        /* Grid Layout */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-top: 30px;
+            margin-bottom: 20px;
+            flex: 1;
         }
 
-        .feature-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            transition: all 0.5s ease;
-        }
-
-        /* .feature-item:hover, */
-        .feature-item.auto-hover {
-            transform: translateX(10px);
-        }
-
-        /* .feature-item:hover .feature-icon-box, */
-        .feature-item.auto-hover .feature-icon-box {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .floating-icon {
-            position: absolute;
-            background-color: #0f172a;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            z-index: 20;
-            transition: all 0.5s ease;
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-            border-color: rgba(59, 130, 246, 0.8);
-        }
-
-        /* .floating-icon:hover, */
-        .floating-icon.auto-hover {
-            transform: scale(1.15);
-        }
-
-        .book-card {
-            width: 320px;
-            height: 341px;
+        /* Tech Category Card */
+        .tech-card {
             background-color: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
-            transition: all 0.5s ease;
-        }
-
-        /* .book-card:hover, */
-        .book-card.auto-hover {
-            transform: perspective(1000px) rotateY(5deg) rotateX(2deg) scale(1.03);
-            box-shadow: 0 25px 60px -10px rgba(59, 130, 246, 0.3);
-            border-color: rgba(59, 130, 246, 0.6);
-        }
-
-        .role-highlight {
-            overflow: hidden;
-            margin-top: 40px;
-            padding: 24px;
-            background-color: rgba(30, 58, 138, 0.2);
-            border-left: 4px solid #3B82F6;
-            border-radius: 0 12px 12px 0;
             position: relative;
+            backdrop-filter: blur(10px);
+            transition: transform 0.5s ease;
         }
         
-        .role-highlight i {
-            top: 9px !important;
-            right: -57px !important;
-            font-size: 11rem !important;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 4rem;
-            opacity: 0.05;
-            color: #fff;
+        /* .tech-card:hover, */
+        .tech-card.auto-hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-5px);
+            background-color: rgba(15, 23, 42, 0.8);
         }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Badges Grid inside card */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tech-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            transition: all 0.5s;
+            width: 100%; /* Full width in column layout usually, but here distinct items */
+        }
+
+        /* .tech-badge:hover, */
+        .tech-badge.auto-hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .badge-icon {
+            font-size: 2rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        /* Bottom Info Section */
+        .info-bar {
+            background-color: rgba(30, 58, 138, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+
+        .info-item > div:last-child {
+            max-width: 250px;
+        }
+
+        .info-icon-circle {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            min-height: 40px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60A5FA;
+            font-size: 1.2rem;
+        }
+
+        /* Custom Colors for Icons */
+        .icon-python { color: #3776AB; }
+        .icon-fastapi { color: #009688; }
+        .icon-go { color: #00ADD8; }
+        .icon-docker { color: #2496ED; }
+        .icon-postgres { color: #336791; }
+        .icon-redis { color: #DC382D; }
+        .icon-ai { color: #8B5CF6; }
 
     </style>
 </head>
 <body>
 <div class="slide-container">
 <!-- Background Elements -->
-<div class="glow-circle glow-blue-left"></div>
-<div class="glow-circle glow-cyan-right"></div>
-<!-- Subtle Pattern -->
-<div style="position: absolute; inset: 0; opacity: 0.05; background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px; z-index: 1;"></div>
+<div class="glow-blob glow-top-right"></div>
+<div class="glow-blob glow-bottom-left"></div>
+<!-- Subtle Pattern (SVG) -->
+<svg height="100%" style="position: absolute; top: 0; left: 0; z-index: 1; opacity: 0.05;" width="100%">
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<circle cx="1" cy="1" fill="#fff" r="1"></circle>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
 <div class="content-wrapper">
-<!-- Left Column: Visual -->
-<div class="w-5/12 visual-container">
-<div class="book-card">
-<div class="w-24 h-24 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-<i class="fas fa-book-open text-5xl text-blue-400"></i>
-</div>
-<div class="text-center px-6">
-<h3 class="text-white font-bold text-xl font-montserrat mb-2">Bază de Cunoștințe</h3>
-<p class="text-blue-200/60 text-sm font-inter">Fundamentele educației media și igienei digitale</p>
-</div>
-<!-- Decorative Lines simulating text -->
-<div class="w-2/3 h-1 bg-gray-700/50 rounded mt-8 mb-2"></div>
-<div class="w-3/4 h-1 bg-gray-700/50 rounded mb-2"></div>
-<div class="w-1/2 h-1 bg-gray-700/50 rounded"></div>
-</div>
-<!-- Floating Elements -->
-<div class="floating-icon icon-osint">
-<i class="fas fa-search-location"></i>
-</div>
-<div class="floating-icon icon-check">
-<i class="fas fa-check-double"></i>
-</div>
-<div class="floating-icon icon-shield">
-<i class="fas fa-shield-alt"></i>
-</div>
-
-<!-- Role Highlight Box -->
-<div class="role-highlight">
-<i class="fas fa-robot"></i>
-<h4 class="text-blue-300 font-bold font-montserrat text-sm uppercase mb-2">Rolul VerifyX</h4>
-<p class="text-white font-inter text-sm leading-relaxed">
-                        AI-ul nostru automatizează colectarea de rutină a faptelor și dovezilor din sute de surse, dar 
-                        <span class="text-blue-400 font-bold">decizia finală rămâne întotdeauna la om</span>, înarmat cu cunoștințe.
+<!-- Header -->
+<div class="mb-3">
+<div class="header-line"></div>
+<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2" data-i18n="section_label">Архитектура и инструменты</h2>
+<div style="display: flex; ">
+    <h1 class="text-4xl font-black text-white font-montserrat" data-i18n="page_title">Технологический Стек</h1>
+    <p class="text-gray-400 font-inter text-lg mt-2 max-w-3xl" style="text-align: right; flex: 1; margin-left: 24px;" data-i18n="subtitle">
+                        Современные решения для обеспечения высокой производительности, надежности и точности анализа.
                     </p>
 </div>
 </div>
-<!-- Right Column: Content -->
-<div class="w-7/12 flex flex-col justify-center pl-10 pt-10">
-<div class="header-line"></div>
-<h2 class="text-blue-400 font-bold tracking-widest uppercase text-sm font-montserrat mb-2">Educație</h2>
-<h1 class="text-4xl font-black text-white font-montserrat mb-2">Metodologia VerifyX</h1>
-<p class="text-gray-400 font-inter text-lg max-w-xl">Nu oferim doar un instrument, ci ajutăm și la dezvoltarea gândirii critice.</p>
-<div class="feature-list">
-<!-- Item 1 -->
-<div class="feature-item">
-<div class="feature-icon-box">
-<i class="fas fa-graduation-cap"></i>
+<!-- Tech Grid -->
+<div class="tech-grid">
+<!-- Card 1: Web Platform -->
+<div class="tech-card">
+<div class="card-header">
+<div class="category-icon bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
+<i class="fas fa-laptop-code"></i>
+</div>
+<h3 class="text-xl font-bold text-white font-montserrat" data-i18n="card1_title">Веб-платформа</h3>
+</div>
+<div class="badges-container flex-col">
+<div class="tech-badge">
+<div class="badge-icon icon-fastapi"><i class="fas fa-bolt"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">FastAPI</div>
+<div class="text-xs text-gray-500 font-inter">Backend Framework</div>
+</div>
+</div>
+<div class="tech-badge">
+<div class="badge-icon icon-python"><i class="fab fa-python"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">Python</div>
+<div class="text-xs text-gray-500 font-inter">Core Logic</div>
+</div>
+</div>
+<div class="tech-badge">
+<div class="badge-icon"><img src="../icons/process.png" alt=""></div>
+<div>
+<div class="text-white font-semibold font-montserrat">SCSS</div>
+<div class="text-xs text-gray-500 font-inter">Core Styling</div>
+</div>
+</div>
+
+</div>
+</div>
+<!-- Card 2: API & AI Engine -->
+<div class="tech-card">
+<div class="card-header">
+<div class="category-icon bg-purple-900/30 text-purple-400 border border-purple-500/30">
+<i class="fas fa-brain"></i>
+</div>
+<h3 class="text-xl font-bold text-white font-montserrat">AI Core &amp; API</h3>
+</div>
+<div class="badges-container">
+<div class="tech-badge w-full">
+<div class="badge-icon icon-go"><i class="fab fa-golang"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">GoLang</div>
+<div class="text-xs text-gray-500 font-inter">High-load API Microservices</div>
+</div>
+</div>
+<div class="flex gap-2 w-full">
+<div class="tech-badge flex-1 justify-center flex-col gap-1 p-2">
+<i class="fas fa-microchip icon-ai text-xl"></i>
+<span class="text-white text-xs font-bold">Groq</span>
+</div>
+<div class="tech-badge flex-1 justify-center flex-col gap-1 p-2">
+<i class="fas fa-network-wired text-blue-400 text-xl"></i>
+<span class="text-white text-xs font-bold">OpenRouter</span>
+</div>
+<div class="tech-badge flex-1 justify-center flex-col gap-1 p-2">
+<i class="fas fa-star text-yellow-400 text-xl"></i>
+<span class="text-white text-xs font-bold">Gemini</span>
+</div>
+</div>
+<p class="text-xs text-gray-400 mt-2 font-inter px-1" data-i18n="aicore_desc">
+                            Использование передовых LLM для семантического анализа и выявления манипуляций.
+                        </p>
+</div>
+</div>
+<!-- Card 3: Infrastructure -->
+<div class="tech-card">
+<div class="card-header">
+<div class="category-icon bg-blue-900/30 text-blue-400 border border-blue-500/30">
+<i class="fas fa-server"></i>
+</div>
+<h3 class="text-xl font-bold text-white font-montserrat" data-i18n="card3_title">Инфраструктура</h3>
+</div>
+<div class="badges-container flex-col">
+<div class="tech-badge">
+<div class="badge-icon icon-docker"><i class="fab fa-docker"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">Docker</div>
+<div class="text-xs text-gray-500 font-inter">Containerization</div>
+</div>
+</div>
+<div class="tech-badge">
+<div class="badge-icon icon-postgres"><i class="fas fa-database"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">PostgreSQL</div>
+<div class="text-xs text-gray-500 font-inter">Relational Database</div>
+</div>
+</div>
+<div class="tech-badge">
+<div class="badge-icon icon-redis"><i class="fas fa-bolt"></i></div>
+<div>
+<div class="text-white font-semibold font-montserrat">Redis</div>
+<div class="text-xs text-gray-500 font-inter">Caching &amp; Queues</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Info Bar -->
+<div class="info-bar mb-5">
+<div class="info-item">
+<div class="info-icon-circle">
+<i class="fas fa-chart-line"></i>
 </div>
 <div>
-<h3 class="text-white font-bold text-lg font-montserrat mb-1">Bibliotecă de cunoștințe</h3>
-<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg">
-                                O colecție a celor mai bune materiale, cărți și articole despre OSINT (informații din surse deschise), fact-checking și psihologia manipulării.
-                            </p>
+<h4 class="text-white font-bold font-montserrat" data-i18n="info1_title">Масштабирование</h4>
+<p class="text-gray-400 text-sm font-inter" data-i18n="info1_desc">Высокий потенциал для горизонтального масштабирования</p>
 </div>
 </div>
-<!-- Item 2 -->
-<div class="feature-item">
-<div class="feature-icon-box">
-<i class="fas fa-list-check"></i>
+<div style="width: 1px; height: 40px;  background-color: rgba(59, 130, 246, 0.3);"></div>
+<div class="info-item">
+<div class="info-icon-circle">
+<i class="fas fa-shield-halved"></i>
 </div>
 <div>
-<h3 class="text-white font-bold text-lg font-montserrat mb-1">Ghiduri practice</h3>
-<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg">
-                                Instrucțiuni pas cu pas: cum să recunoști un cont verificat, cum să verifici autenticitatea unei fotografii și să eviți fraudele.
-                            </p>
+<h4 class="text-white font-bold font-montserrat" data-i18n="info2_title">Безопасность</h4>
+<p class="text-gray-400 text-sm font-inter" data-i18n="info2_desc">OAuth 2.0, шифрование данных, защита API</p>
 </div>
 </div>
-<!-- Item 3 -->
-<div class="feature-item">
-<div class="feature-icon-box">
-<i class="fas fa-lightbulb"></i>
+<div style="width: 1px; height: 40px;  background-color: rgba(59, 130, 246, 0.3);"></div>
+<div class="info-item">
+<div class="info-icon-circle">
+<i class="fas fa-gauge-high"></i>
 </div>
 <div>
-<h3 class="text-white font-bold text-lg font-montserrat mb-1">Sfaturi de la experți</h3>
-<p class="text-gray-400 text-sm font-inter leading-relaxed max-w-lg">
-                                Recomandări pentru analiza surselor și identificarea propagandei ascunse în titlurile de știri.
-                            </p>
-</div>
+<h4 class="text-white font-bold font-montserrat" data-i18n="info3_title">Производительность</h4>
+<p class="text-gray-400 text-sm font-inter" data-i18n="info3_desc">Асинхронная обработка и кэширование запросов</p>
 </div>
 </div>
 </div>
@@ -343,8 +368,7 @@
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
-<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Indicator pagină curentă -->
-<div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
+<div class="w-8 h-2 rounded-full bg-blue-500"></div> <!-- Current Page Indicator -->
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 <div class="w-2 h-2 rounded-full bg-blue-500/30"></div>
 </div>
@@ -352,45 +376,10 @@
 </div>
 </div>
 <script>
-    // Плавающая анимация для иконок
-    function initFloatingAnimation() {
-        const floatingIcons = document.querySelectorAll('.floating-icon');
-        
-        floatingIcons.forEach((icon, index) => {
-            // Разные параметры для каждой иконки
-            const amplitude = 8 + Math.random() * 6; // 8-14px
-            const duration = 2500 + index * 400; // разная скорость
-            const delay = index * 300; // смещение фазы
-            
-            let startTime = null;
-            
-            function animate(timestamp) {
-                if (!startTime) startTime = timestamp - delay;
-                const elapsed = timestamp - startTime;
-                
-                // Синусоидальное движение
-                const offset = Math.sin((elapsed / duration) * Math.PI * 2) * amplitude;
-                icon.style.transform = icon.style.transform.replace(/translateY\([^)]*\)/, '') + ` translateY(${offset}px)`;
-                
-                requestAnimationFrame(animate);
-            }
-            
-            requestAnimationFrame(animate);
-        });
-    }
-    
-    initFloatingAnimation();
-
     function runAutoHoverSequence() {
-        const bookCard = document.querySelector('.book-card');
-        const floatingIcons = document.querySelectorAll('.floating-icon');
-        const featureItems = document.querySelectorAll('.feature-item');
+        const techCards = document.querySelectorAll('.tech-card');
         
-        const elements = [
-            bookCard,
-            // ...floatingIcons,
-            ...featureItems
-        ].filter(Boolean);
+        const elements = [...techCards];
         
         let index = 0;
         const duration = 1000;
@@ -415,8 +404,54 @@
         setTimeout(animateNext, 300);
     }
     
+    window.addEventListener('message', (e) => {
+        if (e.data === 'triggerAutoHover') runAutoHoverSequence();
+        if (e.data && e.data.type === 'setLang') applyLang(e.data.lang);
+    });
+    
     runAutoHoverSequence();
-    setInterval(runAutoHoverSequence, 12000);
+    setInterval(runAutoHoverSequence, 7000);
+</script>
+
+<script>
+    const _i18n = {
+        en: {
+            section_label: 'Architecture & Tools',
+            page_title: 'Technology Stack',
+            subtitle: 'Modern solutions for high performance, reliability and analysis accuracy.',
+            card1_title: 'Web Platform',
+            aicore_desc: 'Using advanced LLMs for semantic analysis and manipulation detection.',
+            card3_title: 'Infrastructure',
+            info1_title: 'Scalability',
+            info1_desc: 'High potential for horizontal scaling',
+            info2_title: 'Security',
+            info2_desc: 'OAuth 2.0, data encryption, API protection',
+            info3_title: 'Performance',
+            info3_desc: 'Asynchronous processing and request caching'
+        },
+        ru: {
+            section_label: '\u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430 \u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b',
+            page_title: '\u0422\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0421\u0442\u0435\u043a',
+            subtitle: '\u0421\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0434\u043b\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0432\u044b\u0441\u043e\u043a\u043e\u0439 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438, \u043d\u0430\u0434\u0435\u0436\u043d\u043e\u0441\u0442\u0438 \u0438 \u0442\u043e\u0447\u043d\u043e\u0441\u0442\u0438 \u0430\u043d\u0430\u043b\u0438\u0437\u0430.',
+            card1_title: '\u0412\u0435\u0431-\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430',
+            aicore_desc: '\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u0434\u043e\u0432\u044b\u0445 LLM \u0434\u043b\u044f \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u0438 \u0432\u044b\u044f\u0432\u043b\u0435\u043d\u0438\u044f \u043c\u0430\u043d\u0438\u043f\u0443\u043b\u044f\u0446\u0438\u0439.',
+            card3_title: '\u0418\u043d\u0444\u0440\u0430\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430',
+            info1_title: '\u041c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435',
+            info1_desc: '\u0412\u044b\u0441\u043e\u043a\u0438\u0439 \u043f\u043e\u0442\u0435\u043d\u0446\u0438\u0430\u043b \u0434\u043b\u044f \u0433\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f',
+            info2_title: '\u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c',
+            info2_desc: 'OAuth 2.0, \u0448\u0438\u0444\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0445, \u0437\u0430\u0449\u0438\u0442\u0430 API',
+            info3_title: '\u041f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c',
+            info3_desc: '\u0410\u0441\u0438\u043d\u0445\u0440\u043e\u043d\u043d\u0430\u044f \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u0438 \u043a\u044d\u0448\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432'
+        }
+    };
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (_i18n[lang] && _i18n[lang][key] !== undefined) el.innerHTML = _i18n[lang][key];
+        });
+    }
+    applyLang('en');
 </script>
 </body>
 </html>
